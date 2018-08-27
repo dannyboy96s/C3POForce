@@ -8,6 +8,88 @@ Call C3P0IsTheBest
 
 End Sub
 
+'=================================================================================================================================================================================================
+'Check if worksheets are present and that one is hfa and the other is oracle. If not - exit out of the program and display error message to user
+'=================================================================================================================================================================================================
+
+Sub CheckWorksheets()
+
+'check if there are two work sheets present
+Dim i As Long
+Dim wsExists As Boolean
+wsExists = False
+Dim wsExists2 As Boolean
+wsExists2 = False
+
+For i = 1 To Worksheets.Count
+    'Debug.Print ("iter pos: " & i)
+    'before running light force - must have only two spreedsheets
+    If i > 2 Then
+        'MsgBox ("Error: make sure there are only two spreadsheets, 1 - HFA BOM, 2 - Oracle BOM. Please remove the extra worksheets. Program execution TERMINATED.")
+		'if users wants to rerun lightforce on a USED workbook then call RerunCheck()
+        Call RerunCheck
+        Exit Sub
+    End If
+    If Worksheets(i).Name Like "MIL?WIFX*" Then
+        wsExists = True
+        'MsgBox ("Success: hfa worksheet present")
+    End If
+    If Worksheets(i).Name Like "fnd_?fm_*" Then
+        wsExists2 = True
+        'MsgBox ("Success: Oracle worksheet present")
+    End If
+Next i
+
+'Debug.Print ("1: " & wsExists)
+'Debug.Print ("2: " & wsExists2)
+
+If wsExists = False And wsExists2 = False Then
+    MsgBox ("ERROR: Both sheets are either named incorrect or in incorrect format. Oracle BOM is not present (  worksheet name must be named as such: fng_gfm_XXXXXXX  ). HFA bom is not present (  worksheet name must be named as such: MIL5WIFX(XXX)  ). Program execution TERMINATED.")
+    Exit Sub
+End If
+If Not wsExists Then
+    MsgBox ("ERROR: HFA bom is not present (  worksheet name must be named as such: MIL5WIFX(XXX)  ). Program execution TERMINATED.")
+    Exit Sub
+End If
+If Not wsExists2 Then
+    MsgBox ("ERROR: Oracle BOM is not present (  worksheet name must be named as such: fng_gfm_XXXXXXX  ). Program execution TERMINATED.")
+    Exit Sub
+End If
+
+'if passes all checks, execute main
+Call Main
+
+End Sub
+
+'=================================================================================================================================================================================================
+'If users wants to rerun C3POForce - to avoid previous crash, check if the sheets(1 and 3) are colored, if so then lightforce was already execute - rerun C3POIsTheBest
+'=================================================================================================================================================================================================
+Sub RerunCheck()
+
+'MsgBox ("rerun test")
+Dim isColored As Boolean
+isColored = False
+
+For i = 1 To Worksheets.Count
+    Debug.Print (i)
+    If range("A2").Cells.Interior.ColorIndex > 0 Then
+    'If range("A2", range("A2").End(xlDown)).Cells.Interior.ColorIndex > 0 Then
+        isColored = True
+    Else
+        isColored = False
+    End If
+    'skip second sheet
+    i = i + 1
+Next i
+
+
+If isColored = True Then
+    Call C3POIsTheBest
+End If
+
+End Sub
+
+
 Sub LightForce()
   
   Call SetUp
