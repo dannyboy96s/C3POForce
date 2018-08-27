@@ -1,6 +1,3 @@
-
-
-
 Sub Main()
 
 Call LightForce
