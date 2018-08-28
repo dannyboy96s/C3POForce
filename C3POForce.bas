@@ -10,7 +10,27 @@ End Sub
 '=================================================================================================================================================================================================
 Sub CheckWorksheets()
 
-'check if there are two work sheets present
+Dim bSheetIsEmpty As Boolean
+Dim ur As range
+Dim cell As range
+Dim ws As Worksheet
+
+For Each ws In ActiveWorkbook.Worksheets
+    Set ur = ws.UsedRange
+    If ur.Count = 1 Then
+        bSheetIsEmpty = Len(ur) = 0
+    Else
+        Set cell = ur.Cells.Find("*", ur(1), -4123&, 2&, 2&, 0, 0)
+        bSheetIsEmpty = cell Is Nothing
+    End If
+    'Debug.Print ws.Name, bSheetIsEmpty
+    If bSheetIsEmpty = True Then
+        MsgBox ws.Name & " is empty"
+        Exit Sub
+    End If
+        
+Next
+
 Dim i As Long
 Dim wsExists As Boolean
 wsExists = False
@@ -68,7 +88,7 @@ Dim isColored As Boolean
 isColored = False
 
 For i = 1 To Worksheets.Count
-    'Debug.Print (i)
+    Debug.Print (i)
     If range("A2").Cells.Interior.ColorIndex > 0 Then
     'If range("A2", range("A2").End(xlDown)).Cells.Interior.ColorIndex > 0 Then
         isColored = True
@@ -85,7 +105,6 @@ If isColored = True Then
 End If
 
 End Sub
-
 
 Sub LightForce()
   
@@ -1062,7 +1081,6 @@ Sub CleanUp()
 End Sub
 
 
-
 '=================================================================================================================================================================================================
 'Summary of BOM after comparision
 '=================================================================================================================================================================================================
@@ -1082,6 +1100,8 @@ Call MissingFromOracle
 'startHfa = Timer()
 Call MissingFromHfa
 'endHfa = Timer()
+
+
 
 'Extra check to indicate whether boms match or not
 Call DoBomsMatch
@@ -1157,8 +1177,6 @@ End Sub
 '=================================================================================================================================================================================================
 'Materials that is missing from HFA DB
 '=================================================================================================================================================================================================
-Sub MissingFromHfa
-
 Sub MissingFromHfa()
 
 Dim ws As Worksheet
@@ -1266,8 +1284,20 @@ Next
 End Sub
 
 
+'=================================================================================================================================================================================================
+'Check cut angles on GT parts
+'=================================================================================================================================================================================================
+Sub CheckCutAngles()
 
+Dim c As range
+Dim d As range
+For Each c In range("E:E")
+    If c.Value Like "GT*" Then
+        Debug.Print ("glass part number: " & c.Value)
+    End If
+Next c
 
+End Sub
 
 
 
