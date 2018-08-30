@@ -1288,7 +1288,6 @@ End Sub
 'Check cut angles on GT parts
 '=================================================================================================================================================================================================
 Sub CheckCutAngles()
-<<<<<<< HEAD
 
 Dim c As range
 Dim d As Double
@@ -1452,18 +1451,8 @@ For c = 2 To oracleLastColumn
     Next r
     End If
 
-=======
-
-Dim c As range
-Dim d As range
-For Each c In range("E:E")
-    If c.Value Like "GT*" Then
-        Debug.Print ("glass part number: " & c.Value)
-    End If
->>>>>>> 58b93f0d7e346b5d146cd4a87b0f7333de2a84ee
 Next c
 
-End Sub
 
 
 For Each item In strWidth
@@ -1643,6 +1632,7 @@ Function IsInArray(arr As Variant, item As Double) As Boolean
     IsInArray = True
     
 End Function
+
 
 
 
