@@ -1288,6 +1288,171 @@ End Sub
 'Check cut angles on GT parts
 '=================================================================================================================================================================================================
 Sub CheckCutAngles()
+<<<<<<< HEAD
+
+Dim c As range
+Dim d As Double
+Dim arrWidth() As Variant
+Dim arrHeight() As Variant
+Dim i As Integer
+
+For Each c In range("J:J")
+    If c.Offset(i, -5) Like "GA*" Then
+        Debug.Print c.Value
+        'd = ActiveCell.Offset(0, 5)
+        'Debug.Print ("glass part number width: " & c)
+    End If
+    Debug.Print "Not glass part: " & c.Value
+i = i + 1
+Next c
+
+End Sub
+
+Sub YellowBananas()
+
+Dim ws As Worksheet
+Set ws = Sheets(1)
+
+Dim lngLastRow As Long
+Dim lngLastColumn As Long
+Dim c As Long
+Dim r As Long
+Dim iw As Long
+Dim ih As Long
+Dim ipn As Long
+iw = 0
+ih = 0
+ipn = 0
+
+Dim arrWidth() As Double
+ReDim Preserve arrWidth(iw)
+
+Dim arrHeight() As Double
+ReDim Preserve arrHeight(ih)
+
+Dim arrPartNumber() As Variant
+ReDim Preserve arrPartNumber(ipn)
+
+
+lngLastRow = ws.Cells(Rows.count, "A").End(xlUp).Row
+lngLastColumn = ws.Cells(1, Columns.count).End(xlToLeft).Column
+Debug.Print "rows: " & lngLastRow
+
+'hfa, get part number and unit width
+For c = 2 To lngLastColumn
+    If ws.Cells(1, c).Value = "Unit Width" Then
+    'Debug.Print "---" & ws.Cells(1, c).Value
+        For r = 2 To lngLastRow
+            If ws.Cells(r, 5).Value Like "GA*" Then
+                If ws.Cells(r, c).Interior.Color = rgbGreen Or ws.Cells(r, c).Interior.Color = rgbSalmon Then
+                    'Debug.Print ws.Cells(r, 5).Value&; ":" & ws.Cells(r, c).Value
+                    ReDim Preserve arrWidth(0 To iw)
+                    arrWidth(iw) = ws.Cells(r, c).Value
+                    
+                    ReDim Preserve arrPartNumber(0 To ipn)
+                    arrPartNumber(ipn) = ws.Cells(r, 5).Value
+                    iw = iw + 1
+                End If
+                ipn = ipn + 1
+            End If
+        Next r
+    End If
+Next c
+
+'hfa, get unit height
+For c = 2 To lngLastColumn
+    If ws.Cells(1, c).Value = "Unit Hight" Then
+    'Debug.Print "---" & ws.Cells(1, c).Value
+        For r = 2 To lngLastRow
+            If ws.Cells(r, 5).Value Like "GA*" Then
+                If ws.Cells(r, c).Interior.Color = rgbGreen Or ws.Cells(r, c).Interior.Color = rgbSalmon Then
+                    'Debug.Print ws.Cells(r, 5).Value&; ":" & ws.Cells(r, c).Value
+                    ReDim Preserve arrHeight(0 To ih)
+                    arrHeight(ih) = ws.Cells(r, c).Value
+                    ih = ih + 1
+                End If
+            End If
+        Next r
+    End If
+Next c
+
+'print to see if getting right values
+For Each item In arrWidth
+    Debug.Print ("item width: " & item)
+Next
+For Each item In arrHeight
+    Debug.Print ("item height: " & item)
+Next
+For Each item In arrPartNumber
+    Debug.Print ("item pn: " & item)
+Next
+
+
+'going though oracle to check if the cut lengths are the same or not
+Dim ws2 As Worksheet
+Set ws2 = Sheets(3)
+
+Dim temp As Double
+Dim count As Integer
+Dim descArr() As String
+Dim oracleLastRow As Long
+Dim oracleLastColumn As Long
+Dim i As Integer
+Dim internalCountWidth As Integer
+internalCountWidth = 0
+Dim internalCountHeight As Integer
+internalCountHeight = 0
+Dim internalCountIgu As Integer
+internalCountIgu = 0
+'Dim dict As New Scripting.Dictionary
+'Dim dict  As Collection
+'Set dict = New Collection
+
+Dim strWidth() As Double
+ReDim Preserve strWidth(internalCountWidth)
+Dim strHeight() As Double
+ReDim Preserve strHeight(internalCountHeight)
+Dim strIgu() As Variant
+ReDim Preserve strIgu(internalCountIgu)
+
+
+oracleLastRow = ws2.Cells(Rows.count, "A").End(xlUp).Row
+oracleLastColumn = ws.Cells(1, Columns.count).End(xlToLeft).Column
+
+For c = 2 To oracleLastColumn
+    If ws2.Cells(1, c).Value = "Description" Then
+    For r = 2 To oracleLastRow
+        If InStr(1, ws2.Cells(r, 3), "IGU") Then
+            count = 0
+            Debug.Print ws2.Cells(r, 3).Value & " $$$$$ " & ws2.Cells(r, c).Value
+            ReDim Preserve strIgu(0 To internalCountIgu)
+            strIgu(internalCountIgu) = ws2.Cells(r, 3).Value
+            internalCountIgu = internalCountIgu + 1
+            descArr() = Split(ws2.Cells(r, c).Value)
+            For i = LBound(descArr) To UBound(descArr)
+                If Val(descArr(i)) <> 0 And count < 2 Then
+                'dict.Add (ws2.Cells(r, 3).Value), (strArr(0) = descArr(i))
+                    If count Mod 2 = 0 Then
+                        temp = CDbl(descArr(i))
+                        Debug.Print temp
+                        ReDim Preserve strWidth(0 To internalCountWidth)
+                        strWidth(internalCountWidth) = temp
+                        internalCountWidth = internalCountWidth + 1
+                    Else
+                        temp = CDbl(descArr(i))
+                        Debug.Print temp
+                        ReDim Preserve strHeight(0 To internalCountHeight)
+                        strHeight(internalCountHeight) = temp
+                        internalCountHeight = internalCountHeight + 1
+                    End If
+                    count = count + 1
+                End If
+            Next i
+        End If
+    Next r
+    End If
+
+=======
 
 Dim c As range
 Dim d As range
@@ -1295,9 +1460,189 @@ For Each c In range("E:E")
     If c.Value Like "GT*" Then
         Debug.Print ("glass part number: " & c.Value)
     End If
+>>>>>>> 58b93f0d7e346b5d146cd4a87b0f7333de2a84ee
 Next c
 
 End Sub
+
+
+For Each item In strWidth
+    Debug.Print ("Width arr: " & item)
+Next
+For Each item In strHeight
+    Debug.Print ("Height arr: " & item)
+Next
+For Each item In strIgu
+    Debug.Print ("Igu arr: " & item)
+Next
+
+
+'print to validiton sheet the IGU part numbers with dimensions - create variable range
+Dim copyRangeStrIgu As String
+StartRow = 1
+LastRow = UBound(strIgu)
+LastRow = LastRow + 1
+copyRangeStrIgu = "BU" & StartRow & ":" & "BU" & LastRow
+
+Dim copyRangeStrWidth As String
+StartRow1 = 1
+LastRow1 = UBound(strWidth)
+LastRow1 = LastRow1 + 1
+copyRangeStrWidth = "BV" & StartRow1 & ":" & "BV" & LastRow1
+
+Dim copyRangeStrHeight As String
+StartRow2 = 1
+LastRow2 = UBound(strHeight)
+LastRow2 = LastRow2 + 1
+copyRangeStrHeight = "BW" & StartRow2 & ":" & "BW" & LastRow2
+
+'"BU6:BU11"
+Sheets(3).range(copyRangeStrIgu).Value = Application.Transpose(strIgu)
+Sheets(3).range(copyRangeStrWidth).Value = Application.Transpose(strWidth)
+Sheets(3).range(copyRangeStrHeight).Value = Application.Transpose(strHeight)
+
+Dim copyRangePartNumber As String
+StartRow3 = 1
+LastRow3 = UBound(strIgu)
+LastRow3 = LastRow3 + 1
+copyRangePartNumber = "CA" & StartRow3 & ":" & "CA" & LastRow3
+
+Dim copyRangeWidth As String
+StartRow4 = 1
+LastRow4 = UBound(strIgu)
+LastRow4 = LastRow4 + 1
+copyRangeWidth = "CB" & StartRow4 & ":" & "CB" & LastRow4
+
+Dim copyRangeHeight As String
+StartRow5 = 1
+LastRow5 = UBound(strIgu)
+LastRow5 = LastRow5 + 1
+copyRangeHeight = "CC" & StartRow5 & ":" & "CC" & LastRow5
+
+Sheets(3).range(copyRangePartNumber).Value = Application.Transpose(arrPartNumber)
+Sheets(3).range(copyRangeWidth).Value = Application.Transpose(arrWidth)
+Sheets(3).range(copyRangeHeight).Value = Application.Transpose(arrHeight)
+
+'print values to validation sheeet
+Dim s1 As String, s2 As String, s3 As String, s4 As String, s5 As String, s6 As String, s7 As String, s8 As String, s9 As String, s10 As String
+Dim r1 As Integer, r2 As Integer
+r1 = LastRow + 1
+r2 = LastRow3 + 1
+s1 = "BT" & r1
+s2 = "BU" & r1
+s3 = "BV" & r1
+s4 = "BW" & r1
+s5 = "BX" & r1
+s6 = "BY" & r1
+s7 = "BZ" & r2
+s8 = "CA" & r2
+s9 = "CB" & r2
+s10 = "CC" & r2
+Worksheets("Validation").range(s1).Value = "Oracle" + vbNewLine + "Values for IGU parts"
+Worksheets("Validation").range(s2).Value = "IGU Part Number"
+Worksheets("Validation").range(s3).Value = "IGU Width"
+Worksheets("Validation").range(s4).Value = "IGU Height"
+Worksheets("Validation").range(s5).Value = "Matching Dimensions"     'green for yes, red for no
+Worksheets("Validation").range(s6).Value = "Off by (tolerance max up to 1/16 or 0.0625)"
+
+Worksheets("Validation").range(s7).Value = "HFA" + vbNewLine + "Values for glass parts"
+Worksheets("Validation").range(s8).Value = "Part Number"
+Worksheets("Validation").range(s9).Value = "Width"
+Worksheets("Validation").range(s10).Value = "Height"
+
+
+'compare oracle values with hfa values to determine whether the dimensions match or not
+Dim iterex As Integer
+Dim iterin As Integer
+Dim iguWidth As Double
+Dim iguHeight As Double
+Dim isIguWidth As Boolean
+isIguWidth = False
+Dim isIguHeight As Boolean
+isIguHeight = False
+Dim correctCount As Long
+correctCount = 0
+Dim incorrectCount As Long
+correctHCount = 0
+
+Dim correctWidthArr() As Double
+ReDim Preserve correctWidthArr(correctCount)
+Dim correctHeightArr() As Double
+ReDim Preserve correctHeightArr(correctCount)
+
+'igu width to compare with hfa width
+For iterex = LBound(strWidth) To UBound(strWidth)
+    iguWidth = strWidth(iterex)
+    Debug.Print "temp var for iguwidth: " & iguWidth
+    For iterin = LBound(arrWidth) To UBound(arrWidth)
+        'If iguWidth = arrWidth(iterin) Then
+         '   isIguWidth = True
+          '  Debug.Print "exact match: " & isIguWidth
+            'Worksheets(3).range("BV" & iterex).Interior.Color = rgbGreen
+           ' Exit For
+        If Math.Abs(iguWidth - arrWidth(iterin)) <= 0.0625 Then
+            isIguWidth = True
+            Debug.Print "approx match within 1/16: " & isIguWidth
+            ReDim Preserve correctWidthArr(0 To correctCount)
+            correctWidthArr(correctCount) = iguWidth
+            correctCount = correctCount + 1
+            'Worksheets(3).range("BV" & iterex).Interior.Color = rgbGreen
+            Exit For
+        Else
+            isIguWidth = False
+            Debug.Print "not a match: " & isIguWidth
+            'If IsInArray(incorrectWidthArr, iguWidth) Then
+            'ReDim Preserve incorrectWidthArr(0 To incorrectCount)
+            'incorrectWidthArr(incorrectCount) = iguWidth
+            'incorrectCount = incorrectCount + 1
+            'End If
+        End If
+    Next iterin
+Next iterex
+
+'igu height to compare with hfa width
+For iterex = LBound(strHeight) To UBound(strHeight)
+    iguHeight = strHeight(iterex)
+    Debug.Print "temp var for iguheight: " & iguHeight
+    For iterin = LBound(arrHeight) To UBound(arrHeight)
+        If Math.Abs(iguHeight - arrHeight(iterin)) <= 0.0625 Then
+            isIguHeight = True
+            Debug.Print "approx match within 1/16: " & isIguHeight
+            ReDim Preserve correctHeightArr(0 To correctHCount)
+            correctHeightArr(correctHCount) = iguHeight
+            correctHCount = correctHCount + 1
+            Exit For
+        Else
+            isIguHeight = False
+            Debug.Print "not a match: " & isIguHeight
+        End If
+    Next iterin
+Next iterex
+
+For Each item In correctWidthArr
+Debug.Print "correct item width: " & item
+Next
+
+For Each item In correctHeightArr
+Debug.Print "correct item height: " & item
+Next
+
+
+
+
+End Sub
+
+Function IsInArray(arr As Variant, item As Double) As Boolean
+    Dim i
+    For i = LBound(arr) To UBound(arr)
+        If arr(i) = item Then
+        IsInArray = True
+        Exit Function
+        End If
+    Next i
+    IsInArray = True
+    
+End Function
 
 
 
