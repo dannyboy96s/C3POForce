@@ -17,7 +17,7 @@ Dim ws As Worksheet
 
 For Each ws In ActiveWorkbook.Worksheets
     Set ur = ws.UsedRange
-    If ur.Count = 1 Then
+    If ur.count = 1 Then
         bSheetIsEmpty = Len(ur) = 0
     Else
         Set cell = ur.Cells.Find("*", ur(1), -4123&, 2&, 2&, 0, 0)
@@ -37,7 +37,7 @@ wsExists = False
 Dim wsExists2 As Boolean
 wsExists2 = False
 
-For i = 1 To Worksheets.Count
+For i = 1 To Worksheets.count
     'Debug.Print ("iter pos: " & i)
     'before running light force - must have only two spreedsheets
     If i > 2 And Worksheets(i).Name Like "Validation" Then
@@ -87,7 +87,7 @@ Sub RerunCheck()
 Dim isColored As Boolean
 isColored = False
 
-For i = 1 To Worksheets.Count
+For i = 1 To Worksheets.count
     Debug.Print (i)
     If range("A2").Cells.Interior.ColorIndex > 0 Then
     'If range("A2", range("A2").End(xlDown)).Cells.Interior.ColorIndex > 0 Then
@@ -1248,7 +1248,7 @@ End Sub
 
 Sub ReFormat()
 Worksheets(3).Columns("BJ:BR").Columns.AutoFit
-'Worksheets(3).Columns("BO:BR").Columns.AutoFit
+Worksheets(3).Columns("BT:CC").Columns.AutoFit
 End Sub
 
 
@@ -1287,26 +1287,6 @@ End Sub
 '=================================================================================================================================================================================================
 'Check cut angles on GT parts
 '=================================================================================================================================================================================================
-Sub CheckCutAngles()
-
-Dim c As range
-Dim d As Double
-Dim arrWidth() As Variant
-Dim arrHeight() As Variant
-Dim i As Integer
-
-For Each c In range("J:J")
-    If c.Offset(i, -5) Like "GA*" Then
-        Debug.Print c.Value
-        'd = ActiveCell.Offset(0, 5)
-        'Debug.Print ("glass part number width: " & c)
-    End If
-    Debug.Print "Not glass part: " & c.Value
-i = i + 1
-Next c
-
-End Sub
-
 Sub YellowBananas()
 
 Dim ws As Worksheet
@@ -1332,58 +1312,57 @@ ReDim Preserve arrHeight(ih)
 Dim arrPartNumber() As Variant
 ReDim Preserve arrPartNumber(ipn)
 
+Dim wsHfa As Worksheet
+Set wsHfa = Sheets(1)
 
-lngLastRow = ws.Cells(Rows.count, "A").End(xlUp).Row
+lngLastRow = ws.Cells(Rows.count, "A").End(xlUp).row
 lngLastColumn = ws.Cells(1, Columns.count).End(xlToLeft).Column
 Debug.Print "rows: " & lngLastRow
 
-'hfa, get part number and unit width
+'hfa get part number
 For c = 2 To lngLastColumn
-    If ws.Cells(1, c).Value = "Unit Width" Then
-    'Debug.Print "---" & ws.Cells(1, c).Value
+    If ws.Cells(1, c).Value = "Part Number" Then
+    Debug.Print "---" & ws.Cells(1, c).Value
         For r = 2 To lngLastRow
-            If ws.Cells(r, 5).Value Like "GA*" Then
-                If ws.Cells(r, c).Interior.Color = rgbGreen Or ws.Cells(r, c).Interior.Color = rgbSalmon Then
-                    'Debug.Print ws.Cells(r, 5).Value&; ":" & ws.Cells(r, c).Value
-                    ReDim Preserve arrWidth(0 To iw)
-                    arrWidth(iw) = ws.Cells(r, c).Value
-                    
+           If ws.Cells(r, c).Value Like "GA*" Or ws.Cells(r, c).Value Like "GT*" Then
+                If ws.Cells(r, 10).Interior.Color <> rgbGrey Then
+                    Debug.Print ws.Cells(r, 10).Value&; ":" & ws.Cells(r, c).Value
                     ReDim Preserve arrPartNumber(0 To ipn)
-                    arrPartNumber(ipn) = ws.Cells(r, 5).Value
-                    iw = iw + 1
+                    arrPartNumber(ipn) = ws.Cells(r, c).Value
+                   ipn = ipn + 1
+
                 End If
-                ipn = ipn + 1
             End If
         Next r
     End If
 Next c
 
+
+'hfa, get unit width
+Dim colHeaderWidth As String
+colHeaderWidth = "Unit Width"
+Dim colPosWidth As Integer
+colPosWidth = 5
+Call GetUnitDimensionsHfa(arrWidth, lngLastRow, lngLastColumn, iw, colHeaderWidth, colPosWidth, wsHfa)
+
+
 'hfa, get unit height
-For c = 2 To lngLastColumn
-    If ws.Cells(1, c).Value = "Unit Hight" Then
-    'Debug.Print "---" & ws.Cells(1, c).Value
-        For r = 2 To lngLastRow
-            If ws.Cells(r, 5).Value Like "GA*" Then
-                If ws.Cells(r, c).Interior.Color = rgbGreen Or ws.Cells(r, c).Interior.Color = rgbSalmon Then
-                    'Debug.Print ws.Cells(r, 5).Value&; ":" & ws.Cells(r, c).Value
-                    ReDim Preserve arrHeight(0 To ih)
-                    arrHeight(ih) = ws.Cells(r, c).Value
-                    ih = ih + 1
-                End If
-            End If
-        Next r
-    End If
-Next c
+Dim colHeaderHeight As String
+colHeaderHeight = "Unit Hight"
+Dim colPosHeight As Integer
+colPosHeight = 5
+Call GetUnitDimensionsHfa(arrHeight, lngLastRow, lngLastColumn, ih, colHeaderHeight, colPosHeight, wsHfa)
+
 
 'print to see if getting right values
 For Each item In arrWidth
-    Debug.Print ("item width: " & item)
+    Debug.Print ("printing item width: " & item)
 Next
 For Each item In arrHeight
-    Debug.Print ("item height: " & item)
+    Debug.Print ("printing item height: " & item)
 Next
 For Each item In arrPartNumber
-    Debug.Print ("item pn: " & item)
+    Debug.Print ("printing item pn: " & item)
 Next
 
 
@@ -1415,7 +1394,7 @@ Dim strIgu() As Variant
 ReDim Preserve strIgu(internalCountIgu)
 
 
-oracleLastRow = ws2.Cells(Rows.count, "A").End(xlUp).Row
+oracleLastRow = ws2.Cells(Rows.count, "A").End(xlUp).row
 oracleLastColumn = ws.Cells(1, Columns.count).End(xlToLeft).Column
 
 For c = 2 To oracleLastColumn
@@ -1487,8 +1466,11 @@ copyRangeStrHeight = "BW" & StartRow2 & ":" & "BW" & LastRow2
 
 '"BU6:BU11"
 Sheets(3).range(copyRangeStrIgu).Value = Application.Transpose(strIgu)
+'Sheets(3).range("BU2").Resize((UBound(strIgu) - LBound(strIgu)) + 1, 1).Value = Application.Transpose(strIgu)
 Sheets(3).range(copyRangeStrWidth).Value = Application.Transpose(strWidth)
+'Sheets(3).range("BV2").Resize((UBound(strWidth) - LBound(strWidth)) + 1, 1).Value = Application.Transpose(strWidth)
 Sheets(3).range(copyRangeStrHeight).Value = Application.Transpose(strHeight)
+'Sheets(3).range("BW2").Resize((UBound(strHeight) - LBound(strHeight)) + 1, 1).Value = Application.Transpose(strHeight)
 
 Dim copyRangePartNumber As String
 StartRow3 = 1
@@ -1508,9 +1490,12 @@ LastRow5 = UBound(strIgu)
 LastRow5 = LastRow5 + 1
 copyRangeHeight = "CC" & StartRow5 & ":" & "CC" & LastRow5
 
-Sheets(3).range(copyRangePartNumber).Value = Application.Transpose(arrPartNumber)
-Sheets(3).range(copyRangeWidth).Value = Application.Transpose(arrWidth)
-Sheets(3).range(copyRangeHeight).Value = Application.Transpose(arrHeight)
+'Sheets(3).range(copyRangePartNumber).Value = Application.Transpose(arrPartNumber)
+Sheets(3).range("CA2").Resize((UBound(arrPartNumber) - LBound(arrPartNumber)) + 1, 1).Value = Application.Transpose(arrPartNumber)
+'Sheets(3).range(copyRangeWidth).Value = Application.Transpose(arrWidth)
+Sheets(3).range("CB2").Resize((UBound(arrWidth) - LBound(arrWidth)) + 1, 1).Value = Application.Transpose(arrWidth)
+'Sheets(3).range(copyRangeHeight).Value = Application.Transpose(arrHeight)
+Sheets(3).range("CC2").Resize((UBound(arrHeight) - LBound(arrHeight)) + 1, 1).Value = Application.Transpose(arrHeight)
 
 'print values to validation sheeet
 Dim s1 As String, s2 As String, s3 As String, s4 As String, s5 As String, s6 As String, s7 As String, s8 As String, s9 As String, s10 As String
@@ -1527,17 +1512,25 @@ s7 = "BZ" & r2
 s8 = "CA" & r2
 s9 = "CB" & r2
 s10 = "CC" & r2
-Worksheets("Validation").range(s1).Value = "Oracle" + vbNewLine + "Values for IGU parts"
+Worksheets("Validation").range(s1).Value = "Oracle" '+ vbNewLine + "Values for IGU parts"
+Worksheets("Validation").range(s1).Interior.Color = rgbYellow
 Worksheets("Validation").range(s2).Value = "IGU Part Number"
+Worksheets("Validation").range(s2).Interior.Color = rgbYellow
 Worksheets("Validation").range(s3).Value = "IGU Width"
+Worksheets("Validation").range(s3).Interior.Color = rgbYellow
 Worksheets("Validation").range(s4).Value = "IGU Height"
-Worksheets("Validation").range(s5).Value = "Matching Dimensions"     'green for yes, red for no
-Worksheets("Validation").range(s6).Value = "Off by (tolerance max up to 1/16 or 0.0625)"
+Worksheets("Validation").range(s4).Interior.Color = rgbYellow
+'Worksheets("Validation").range(s5).Value = "Matching Dimensions"     'green for yes, red for no
+'Worksheets("Validation").range(s6).Value = "Off by (tolerance max up to 1/16 or 0.0625)"
 
-Worksheets("Validation").range(s7).Value = "HFA" + vbNewLine + "Values for glass parts"
-Worksheets("Validation").range(s8).Value = "Part Number"
-Worksheets("Validation").range(s9).Value = "Width"
-Worksheets("Validation").range(s10).Value = "Height"
+Worksheets("Validation").range("BZ1").Value = "HFA" '+ vbNewLine + "Values for glass parts"
+Worksheets("Validation").range("BZ1").Interior.Color = rgbYellow
+Worksheets("Validation").range("CA1").Value = "Part Number"
+Worksheets("Validation").range("CA1").Interior.Color = rgbYellow
+Worksheets("Validation").range("CB1").Value = "Width"
+Worksheets("Validation").range("CB1").Interior.Color = rgbYellow
+Worksheets("Validation").range("CC1").Value = "Height"
+Worksheets("Validation").range("CC1").Interior.Color = rgbYellow
 
 
 'compare oracle values with hfa values to determine whether the dimensions match or not
@@ -1589,7 +1582,7 @@ For iterex = LBound(strWidth) To UBound(strWidth)
     Next iterin
 Next iterex
 
-'igu height to compare with hfa width
+'igu height to compare with hfa height
 For iterex = LBound(strHeight) To UBound(strHeight)
     iguHeight = strHeight(iterex)
     Debug.Print "temp var for iguheight: " & iguHeight
@@ -1616,11 +1609,28 @@ For Each item In correctHeightArr
 Debug.Print "correct item height: " & item
 Next
 
+'go through oracle igu values and whichever values are correct, color green otherwise color red for incorrect
+'check igu widths
+Dim rangeWidth As range
+Set rangeWidth = Sheets("Validation").range("BV:BV")
+Dim likeStr1 As String
+likeStr1 = "IGU Width*"
+Call CompareValuesAndColorCell(rangeWidth, likeStr1, correctWidthArr)
+
+'check igu height
+Dim rangeHeight As range
+Set rangeHeight = Sheets("Validation").range("BW:BW")
+Dim likeStr2 As String
+likeStr2 = "IGU Height*"
+Call CompareValuesAndColorCell(rangeHeight, likeStr2, correctHeightArr)
 
 
 
 End Sub
 
+'=================================================================================================================================================================================================
+'Search through array to see if correct value is present
+'=================================================================================================================================================================================================
 Function IsInArray(arr As Variant, item As Double) As Boolean
     Dim i
     For i = LBound(arr) To UBound(arr)
@@ -1629,12 +1639,46 @@ Function IsInArray(arr As Variant, item As Double) As Boolean
         Exit Function
         End If
     Next i
-    IsInArray = True
+    IsInArray = False
     
 End Function
 
+'=================================================================================================================================================================================================
+'Compare igu width and height and color cells to indicate if correct or incorrect
+'=================================================================================================================================================================================================
+Function CompareValuesAndColorCell(rg As range, likeStr As String, correctArr As Variant)
+For Each w In rg
+    If w.Value Like likeStr Then
+        Exit For
+    End If
+    Debug.Print w.Value
+    If IsInArray(correctArr, w.Value) Then
+        w.Interior.Color = rgbGreen
+    Else
+        w.Interior.Color = rgbRed
+    End If
+Next
 
+End Function
 
+Function GetUnitDimensionsHfa(arr As Variant, row As Long, col As Long, arrCount As Long, strColHeader As String, colPos As Integer, ws As Worksheet)
+For c = 2 To col
+    If ws.Cells(1, c).Value = strColHeader Then
+    Debug.Print "---" & ws.Cells(1, c).Value
+        For r = 2 To row
+            If ws.Cells(r, colPos).Value Like "GA*" Or ws.Cells(r, colPos).Value Like "GT*" Then
+            'ws.Cells(r, 5).Interior.Color = rgbOrange Then
+                If ws.Cells(r, c).Interior.Color = rgbGreen Or ws.Cells(r, c).Interior.Color = rgbSalmon Then
+                    Debug.Print ws.Cells(r, colPos).Value&; ":" & ws.Cells(r, c).Value
+                    ReDim Preserve arr(0 To arrCount)
+                    arr(arrCount) = ws.Cells(r, c).Value
+                    arrCount = arrCount + 1
+                End If
+            End If
+        Next r
+    End If
+Next c
+End Function
 
 
 
