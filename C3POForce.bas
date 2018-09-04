@@ -1661,6 +1661,9 @@ Next
 
 End Function
 
+'=================================================================================================================================================================================================
+'Get the unit width and height of the glass units from HFA BOM
+'=================================================================================================================================================================================================
 Function GetUnitDimensionsHfa(arr As Variant, row As Long, col As Long, arrCount As Long, strColHeader As String, colPos As Integer, ws As Worksheet)
 For c = 2 To col
     If ws.Cells(1, c).Value = strColHeader Then
