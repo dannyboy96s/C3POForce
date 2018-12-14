@@ -11,8 +11,8 @@ End Sub
 Sub CheckWorksheets()
 
 Dim bSheetIsEmpty As Boolean
-Dim ur As range
-Dim cell As range
+Dim ur As Range
+Dim cell As Range
 Dim ws As Worksheet
 
 For Each ws In ActiveWorkbook.Worksheets
@@ -89,7 +89,7 @@ isColored = False
 
 For i = 1 To Worksheets.count
     Debug.Print (i)
-    If range("A2").Cells.Interior.ColorIndex > 0 Then
+    If Range("A2").Cells.Interior.ColorIndex > 0 Then
     'If range("A2", range("A2").End(xlDown)).Cells.Interior.ColorIndex > 0 Then
         isColored = True
     Else
@@ -127,8 +127,8 @@ Sub SetUp()
   'Open new sheets
   Worksheets(2).Copy After:=Worksheets(2)
   Worksheets(3).Name = "Validation"
-  Worksheets(3).range("B1").EntireColumn.Insert
-  Worksheets(3).range("B1").Value = "Validation"
+  Worksheets(3).Range("B1").EntireColumn.Insert
+  Worksheets(3).Range("B1").Value = "Validation"
   Sheets.Add After:=Worksheets(3)
   Worksheets(4).Name = "Cuts"
   
@@ -142,101 +142,101 @@ Sub SetUp()
 
   Worksheets(3).Columns(17).ClearContents
   Worksheets(3).Columns(18).ClearContents
-  Worksheets(3).range("Q1").Value = "HFA Cut Length"
+  Worksheets(3).Range("Q1").Value = "HFA Cut Length"
   
   'OUTER LOOP HFA
-  For j = 2 To Worksheets(1).range("C3000").End(xlUp).Row
+  For j = 2 To Worksheets(1).Range("C3000").End(xlUp).row
     'HFA
     'Highlight Glass
-    If InStr(Worksheets(1).range("E" & j), "GT") = 1 _
-    Or InStr(Worksheets(1).range("E" & j), "GA") = 1 Then
+    If InStr(Worksheets(1).Range("E" & j), "GT") = 1 _
+    Or InStr(Worksheets(1).Range("E" & j), "GA") = 1 Then
       glassCount = glassCount + 1
-      Worksheets(1).range("A" & j).Interior.Color = rgbOrange
-      Worksheets(1).range("B" & j).Interior.Color = rgbOrange
-      Worksheets(1).range("C" & j).Interior.Color = rgbOrange
-      Worksheets(1).range("D" & j).Interior.Color = rgbOrange
-      Worksheets(1).range("E" & j).Interior.Color = rgbOrange
-      Worksheets(3).range("AZ" & glassCount).Value = Worksheets(1).range("J" & j).Value
-      Worksheets(3).range("BA" & glassCount).Value = Worksheets(1).range("K" & j).Value
+      Worksheets(1).Range("A" & j).Interior.Color = rgbOrange
+      Worksheets(1).Range("B" & j).Interior.Color = rgbOrange
+      Worksheets(1).Range("C" & j).Interior.Color = rgbOrange
+      Worksheets(1).Range("D" & j).Interior.Color = rgbOrange
+      Worksheets(1).Range("E" & j).Interior.Color = rgbOrange
+      Worksheets(3).Range("AZ" & glassCount).Value = Worksheets(1).Range("J" & j).Value
+      Worksheets(3).Range("BA" & glassCount).Value = Worksheets(1).Range("K" & j).Value
       'Track Position of HFA for Highlighting Later
-      Worksheets(3).range("BG1").Value = "HFA BOM line"
-      Worksheets(3).range("BG" & glassCount).Value = j
+      Worksheets(3).Range("BG1").Value = "HFA BOM line"
+      Worksheets(3).Range("BG" & glassCount).Value = j
     End If
     'HFA
     'Highlight Frame and other parts that are not relivant and Spacer
-    If InStr(Worksheets(1).range("E" & j), "VIG") = 1 _
-    Or InStr(Worksheets(1).range("E" & j), "VP") = 1 _
-    Or InStr(Worksheets(1).range("E" & j), "FR") = 1 _
-    Or InStr(Worksheets(1).range("E" & j), "FP") = 1 _
-    Or InStr(Worksheets(1).range("E" & j), "WNIG") <> 0 _
-    Or InStr(Worksheets(1).range("E" & j), "PAINTING") <> 0 _
-    Or (InStr(Worksheets(1).range("Q" & j), "SPACER") <> 0 And Worksheets(1).range("H" & j).Value = "LI") Then
-      Worksheets(1).range("A" & j).Interior.Color = rgbGrey
-      Worksheets(1).range("B" & j).Interior.Color = rgbGrey
-      Worksheets(1).range("C" & j).Interior.Color = rgbGrey
-      Worksheets(1).range("D" & j).Interior.Color = rgbGrey
-      Worksheets(1).range("E" & j).Interior.Color = rgbGrey
-      Worksheets(1).range("F" & j).Interior.Color = rgbGrey
-      Worksheets(1).range("Q" & j).Interior.Color = rgbGrey
-      If InStr(Worksheets(1).range("Q" & j), "SPACER") <> 0 Then
-        Worksheets(1).range("J" & j).Interior.Color = rgbGrey
+    If InStr(Worksheets(1).Range("E" & j), "VIG") = 1 _
+    Or InStr(Worksheets(1).Range("E" & j), "VP") = 1 _
+    Or InStr(Worksheets(1).Range("E" & j), "FR") = 1 _
+    Or InStr(Worksheets(1).Range("E" & j), "FP") = 1 _
+    Or InStr(Worksheets(1).Range("E" & j), "WNIG") <> 0 _
+    Or InStr(Worksheets(1).Range("E" & j), "PAINTING") <> 0 _
+    Or (InStr(Worksheets(1).Range("Q" & j), "SPACER") <> 0 And Worksheets(1).Range("H" & j).Value = "LI") Then
+      Worksheets(1).Range("A" & j).Interior.Color = rgbGrey
+      Worksheets(1).Range("B" & j).Interior.Color = rgbGrey
+      Worksheets(1).Range("C" & j).Interior.Color = rgbGrey
+      Worksheets(1).Range("D" & j).Interior.Color = rgbGrey
+      Worksheets(1).Range("E" & j).Interior.Color = rgbGrey
+      Worksheets(1).Range("F" & j).Interior.Color = rgbGrey
+      Worksheets(1).Range("Q" & j).Interior.Color = rgbGrey
+      If InStr(Worksheets(1).Range("Q" & j), "SPACER") <> 0 Then
+        Worksheets(1).Range("J" & j).Interior.Color = rgbGrey
       End If
     End If
     
     'HFA Minor Parts
-    If InStr(Worksheets(1).range("Q" & j), "CLIP") <> 0 _
-    Or InStr(Worksheets(1).range("Q" & j), "BREATHER TUBE") <> 0 _
-    Or InStr(Worksheets(1).range("Q" & j), "BUTYL") <> 0 _
-    Or InStr(Worksheets(1).range("Q" & j), " DSE ") <> 0 _
-    Or InStr(Worksheets(1).range("Q" & j), "CLILP") <> 0 _
-    Or InStr(Worksheets(1).range("Q" & j), "DESICCANT") <> 0 _
-    Or InStr(Worksheets(1).range("Q" & j), "GASKET") <> 0 _
-    Or InStr(Worksheets(1).range("Q" & j), "TAPE") <> 0 _
-    Or InStr(Worksheets(1).range("Q" & j), "SASH STOP") <> 0 _
-    Or InStr(Worksheets(1).range("Q" & j), "SETTING BLOCK") <> 0 _
-    Or InStr(Worksheets(1).range("Q" & j), "CAULKING") <> 0 _
-    Or InStr(Worksheets(1).range("E" & j), "WS") = 1 _
-    Or InStr(Worksheets(1).range("Q" & j), "CVR") <> 0 _
-    Or InStr(Worksheets(1).range("Q" & j), "COVER") <> 0 _
-    Or InStr(Worksheets(1).range("Q" & j), "STRIKE") <> 0 Then
-      Worksheets(1).range("A" & j).Interior.Color = rgbGrey
-      Worksheets(1).range("B" & j).Interior.Color = rgbGrey
-      Worksheets(1).range("C" & j).Interior.Color = rgbGrey
-      Worksheets(1).range("D" & j).Interior.Color = rgbGrey
-      Worksheets(1).range("E" & j).Interior.Color = rgbGrey
-      Worksheets(1).range("F" & j).Interior.Color = rgbGrey
-      Worksheets(1).range("Q" & j).Interior.Color = rgbGrey
+    If InStr(Worksheets(1).Range("Q" & j), "CLIP") <> 0 _
+    Or InStr(Worksheets(1).Range("Q" & j), "BREATHER TUBE") <> 0 _
+    Or InStr(Worksheets(1).Range("Q" & j), "BUTYL") <> 0 _
+    Or InStr(Worksheets(1).Range("Q" & j), " DSE ") <> 0 _
+    Or InStr(Worksheets(1).Range("Q" & j), "CLILP") <> 0 _
+    Or InStr(Worksheets(1).Range("Q" & j), "DESICCANT") <> 0 _
+    Or InStr(Worksheets(1).Range("Q" & j), "GASKET") <> 0 _
+    Or InStr(Worksheets(1).Range("Q" & j), "TAPE") <> 0 _
+    Or InStr(Worksheets(1).Range("Q" & j), "SASH STOP") <> 0 _
+    Or InStr(Worksheets(1).Range("Q" & j), "SETTING BLOCK") <> 0 _
+    Or InStr(Worksheets(1).Range("Q" & j), "CAULKING") <> 0 _
+    Or InStr(Worksheets(1).Range("E" & j), "WS") = 1 _
+    Or InStr(Worksheets(1).Range("Q" & j), "CVR") <> 0 _
+    Or InStr(Worksheets(1).Range("Q" & j), "COVER") <> 0 _
+    Or InStr(Worksheets(1).Range("Q" & j), "STRIKE") <> 0 Then
+      Worksheets(1).Range("A" & j).Interior.Color = rgbGrey
+      Worksheets(1).Range("B" & j).Interior.Color = rgbGrey
+      Worksheets(1).Range("C" & j).Interior.Color = rgbGrey
+      Worksheets(1).Range("D" & j).Interior.Color = rgbGrey
+      Worksheets(1).Range("E" & j).Interior.Color = rgbGrey
+      Worksheets(1).Range("F" & j).Interior.Color = rgbGrey
+      Worksheets(1).Range("Q" & j).Interior.Color = rgbGrey
     End If
     
     'Highlight Grid Descriptions
-    If InStr(Worksheets(1).range("Q" & j), "GRD") <> 0 _
-    Or InStr(Worksheets(1).range("Q" & j), "GRID") <> 0 _
-    Or InStr(Worksheets(1).range("Q" & j), "MUNTIN") <> 0 Then
-      Worksheets(1).range("Q" & j).Interior.Color = RGB(102, 102, 204)
+    If InStr(Worksheets(1).Range("Q" & j), "GRD") <> 0 _
+    Or InStr(Worksheets(1).Range("Q" & j), "GRID") <> 0 _
+    Or InStr(Worksheets(1).Range("Q" & j), "MUNTIN") <> 0 Then
+      Worksheets(1).Range("Q" & j).Interior.Color = RGB(102, 102, 204)
     End If
     
     'HFA
     'NEW Add Cut parts to 4th Worksheet "Cuts"
-    If (Worksheets(1).range("A" & j).Interior.Color <> rgbGrey _
-    And Worksheets(1).range("A" & j).Interior.Color <> rgbOrange _
-    And Worksheets(1).range("J" & j).Value > 1 _
-    And Worksheets(1).range("H" & j).Value = "LI" _
-    And InStr(Worksheets(1).range("Q" & j), "SPACER") = 0) _
+    If (Worksheets(1).Range("A" & j).Interior.Color <> rgbGrey _
+    And Worksheets(1).Range("A" & j).Interior.Color <> rgbOrange _
+    And Worksheets(1).Range("J" & j).Value > 1 _
+    And Worksheets(1).Range("H" & j).Value = "LI" _
+    And InStr(Worksheets(1).Range("Q" & j), "SPACER") = 0) _
  _
-    Or (Worksheets(1).range("A" & j).Interior.Color <> rgbGrey _
-    And Worksheets(1).range("A" & j).Interior.Color <> rgbOrange _
-    And Worksheets(1).range("H" & j).Value = "EA" _
-    And InStr(Worksheets(1).range("Q" & j), "PRECUT V") <> 0) Then
-        For cutFlatten = Worksheets(1).range("F" & j).Value To 1 Step -1
-          Worksheets(4).range("A" & hFACutIndex).Value = j
-          Worksheets(4).range("B" & hFACutIndex).Value = Worksheets(1).range("E" & j).Value
-          Worksheets(4).range("B" & hFACutIndex).Interior.Color = rgbRed
-          hFACutLower = Val(Worksheets(1).range("J" & j).Value) - 0.0625
-          hFACutUpper = Val(Worksheets(1).range("J" & j).Value) + 0.0625
-          Worksheets(4).range("C" & hFACutIndex).Value = hFACutLower
-          Worksheets(4).range("D" & hFACutIndex).Value = Worksheets(1).range("J" & j).Value
-          Worksheets(4).range("E" & hFACutIndex).Value = hFACutUpper
-          Worksheets(4).range("F" & hFACutIndex).Value = Worksheets(1).range("F" & j).Value
+    Or (Worksheets(1).Range("A" & j).Interior.Color <> rgbGrey _
+    And Worksheets(1).Range("A" & j).Interior.Color <> rgbOrange _
+    And Worksheets(1).Range("H" & j).Value = "EA" _
+    And InStr(Worksheets(1).Range("Q" & j), "PRECUT V") <> 0) Then
+        For cutFlatten = Worksheets(1).Range("F" & j).Value To 1 Step -1
+          Worksheets(4).Range("A" & hFACutIndex).Value = j
+          Worksheets(4).Range("B" & hFACutIndex).Value = Worksheets(1).Range("E" & j).Value
+          Worksheets(4).Range("B" & hFACutIndex).Interior.Color = rgbRed
+          hFACutLower = Val(Worksheets(1).Range("J" & j).Value) - 0.0625
+          hFACutUpper = Val(Worksheets(1).Range("J" & j).Value) + 0.0625
+          Worksheets(4).Range("C" & hFACutIndex).Value = hFACutLower
+          Worksheets(4).Range("D" & hFACutIndex).Value = Worksheets(1).Range("J" & j).Value
+          Worksheets(4).Range("E" & hFACutIndex).Value = hFACutUpper
+          Worksheets(4).Range("F" & hFACutIndex).Value = Worksheets(1).Range("F" & j).Value
           hFACutIndex = hFACutIndex + 1
         Next cutFlatten
     End If
@@ -244,60 +244,60 @@ Sub SetUp()
 '------------------------------------------------------------------------------------
     
     'INNER LOOP FOR ORACLE PARTS
-    For i = 2 To Worksheets(3).range("C3000").End(xlUp).Row
+    For i = 2 To Worksheets(3).Range("C3000").End(xlUp).row
       'Oracle
       'Highlight All UOM EA And LI
-      Worksheets(3).range("N" & i).Interior.Color = rgbGrey
+      Worksheets(3).Range("N" & i).Interior.Color = rgbGrey
       'Oracle
       'Grey out any lines that will not be matched like Sublines, IGU, PANEL, LABEL, FRAME, and GLASS
       'Or (InStr(Worksheets(3).Range("C" & i), "*") <> 0 And InStr(Worksheets(3).Range("C" & i), "X-") = 0)
-      If Worksheets(3).range("N" & i).Value = "LI" _
-      Or InStr(1, Worksheets(3).range("C" & i), "PANEL") _
-      Or InStr(1, Worksheets(3).range("C" & i), "LABEL") _
-      Or InStr(1, Worksheets(3).range("C" & i), "FRAME") _
-      Or InStr(1, Worksheets(3).range("C" & i), "X-GT") _
-      Or InStr(1, Worksheets(3).range("C" & i), "X-GA") _
-      Or InStr(1, Worksheets(3).range("C" & i), "GA") _
-      Or InStr(1, Worksheets(3).range("C" & i), "GT") Then
-        Worksheets(3).range("A" & i).Interior.Color = rgbGrey
-        Worksheets(3).range("B" & i).Interior.Color = rgbGrey
-        Worksheets(3).range("C" & i).Interior.Color = rgbGrey
-        Worksheets(3).range("D" & i).Interior.Color = rgbGrey
-        Worksheets(3).range("P" & i).Interior.Color = rgbGrey
+      If Worksheets(3).Range("N" & i).Value = "LI" _
+      Or InStr(1, Worksheets(3).Range("C" & i), "PANEL") _
+      Or InStr(1, Worksheets(3).Range("C" & i), "LABEL") _
+      Or InStr(1, Worksheets(3).Range("C" & i), "FRAME") _
+      Or InStr(1, Worksheets(3).Range("C" & i), "X-GT") _
+      Or InStr(1, Worksheets(3).Range("C" & i), "X-GA") _
+      Or InStr(1, Worksheets(3).Range("C" & i), "GA") _
+      Or InStr(1, Worksheets(3).Range("C" & i), "GT") Then
+        Worksheets(3).Range("A" & i).Interior.Color = rgbGrey
+        Worksheets(3).Range("B" & i).Interior.Color = rgbGrey
+        Worksheets(3).Range("C" & i).Interior.Color = rgbGrey
+        Worksheets(3).Range("D" & i).Interior.Color = rgbGrey
+        Worksheets(3).Range("P" & i).Interior.Color = rgbGrey
       End If
       
       'Oracle
       'Grey out Precuts since they are 'EA'
-      If InStr(Worksheets(3).range("D" & i), "PRECUT V") <> 0 Then
-        Worksheets(3).range("A" & i).Interior.Color = rgbGrey
-        Worksheets(3).range("B" & i).Interior.Color = rgbGrey
-        Worksheets(3).range("C" & i).Interior.Color = rgbGrey
-        Worksheets(3).range("D" & i).Interior.Color = rgbGrey
-        Worksheets(3).range("P" & i).Interior.Color = rgbGrey
+      If InStr(Worksheets(3).Range("D" & i), "PRECUT V") <> 0 Then
+        Worksheets(3).Range("A" & i).Interior.Color = rgbGrey
+        Worksheets(3).Range("B" & i).Interior.Color = rgbGrey
+        Worksheets(3).Range("C" & i).Interior.Color = rgbGrey
+        Worksheets(3).Range("D" & i).Interior.Color = rgbGrey
+        Worksheets(3).Range("P" & i).Interior.Color = rgbGrey
       End If
       
       'Oracle Minor Parts and Spacer LI
-      If InStr(Worksheets(3).range("D" & i), "CLIP") <> 0 _
-      Or InStr(Worksheets(3).range("D" & i), "BREATHER TUBE") <> 0 _
-      Or InStr(Worksheets(3).range("D" & i), "WEEP") <> 0 _
-      Or InStr(Worksheets(3).range("D" & i), "BUTYL") <> 0 _
-      Or InStr(Worksheets(3).range("D" & i), "CVR") <> 0 _
-      Or InStr(Worksheets(3).range("D" & i), "Cover") <> 0 _
-      Or InStr(Worksheets(3).range("D" & i), " DSE ") <> 0 _
-      Or InStr(Worksheets(3).range("D" & i), "DESICCANT") <> 0 _
-      Or InStr(Worksheets(3).range("D" & i), "GASKET") <> 0 _
-      Or InStr(Worksheets(3).range("D" & i), "TAPE") <> 0 _
-      Or InStr(Worksheets(3).range("D" & i), "SASH STOP") <> 0 _
-      Or InStr(Worksheets(3).range("D" & i), "BLOCK") <> 0 _
-      Or InStr(Worksheets(3).range("D" & i), "CAULKING") <> 0 _
-      Or InStr(Worksheets(3).range("D" & i), "STRIKE") <> 0 _
-      Or InStr(Worksheets(3).range("D" & i), "ARGON") <> 0 _
-      Or (InStr(Worksheets(3).range("D" & i), "SPACER") <> 0 And Worksheets(3).range("N" & i).Value = "LI") Then
-        Worksheets(3).range("A" & i).Interior.Color = rgbGrey
-        Worksheets(3).range("B" & i).Interior.Color = rgbGrey
-        Worksheets(3).range("C" & i).Interior.Color = rgbGrey
-        Worksheets(3).range("D" & i).Interior.Color = rgbGrey
-        Worksheets(3).range("P" & i).Interior.Color = rgbGrey
+      If InStr(Worksheets(3).Range("D" & i), "CLIP") <> 0 _
+      Or InStr(Worksheets(3).Range("D" & i), "BREATHER TUBE") <> 0 _
+      Or InStr(Worksheets(3).Range("D" & i), "WEEP") <> 0 _
+      Or InStr(Worksheets(3).Range("D" & i), "BUTYL") <> 0 _
+      Or InStr(Worksheets(3).Range("D" & i), "CVR") <> 0 _
+      Or InStr(Worksheets(3).Range("D" & i), "Cover") <> 0 _
+      Or InStr(Worksheets(3).Range("D" & i), " DSE ") <> 0 _
+      Or InStr(Worksheets(3).Range("D" & i), "DESICCANT") <> 0 _
+      Or InStr(Worksheets(3).Range("D" & i), "GASKET") <> 0 _
+      Or InStr(Worksheets(3).Range("D" & i), "TAPE") <> 0 _
+      Or InStr(Worksheets(3).Range("D" & i), "SASH STOP") <> 0 _
+      Or InStr(Worksheets(3).Range("D" & i), "BLOCK") <> 0 _
+      Or InStr(Worksheets(3).Range("D" & i), "CAULKING") <> 0 _
+      Or InStr(Worksheets(3).Range("D" & i), "STRIKE") <> 0 _
+      Or InStr(Worksheets(3).Range("D" & i), "ARGON") <> 0 _
+      Or (InStr(Worksheets(3).Range("D" & i), "SPACER") <> 0 And Worksheets(3).Range("N" & i).Value = "LI") Then
+        Worksheets(3).Range("A" & i).Interior.Color = rgbGrey
+        Worksheets(3).Range("B" & i).Interior.Color = rgbGrey
+        Worksheets(3).Range("C" & i).Interior.Color = rgbGrey
+        Worksheets(3).Range("D" & i).Interior.Color = rgbGrey
+        Worksheets(3).Range("P" & i).Interior.Color = rgbGrey
       End If
       'Incriment inner loop
     Next i
@@ -314,8 +314,8 @@ Sub Glass()
   
   'ORACLE GLASS LOOP
   'Building up array of AW and AX with Oracle glass sizes
-  Worksheets(3).range("AW1").Value = "Oracle GLASS W"
-  Worksheets(3).range("AX1").Value = "Oracle GLASS H"
+  Worksheets(3).Range("AW1").Value = "Oracle GLASS W"
+  Worksheets(3).Range("AX1").Value = "Oracle GLASS H"
   
   Dim c As Integer, widthStopCount As Integer
   Dim glassWidthStr As String, glassHeightStr As String
@@ -324,9 +324,9 @@ Sub Glass()
   
   glassCount = 1
   
-  For i = 2 To Worksheets(3).range("C3000").End(xlUp).Row
+  For i = 2 To Worksheets(3).Range("C3000").End(xlUp).row
     'Parse out Width And Height from IGU line And Print to new Column
-    If InStr(1, Worksheets(3).range("C" & i), "IGU") Then
+    If InStr(1, Worksheets(3).Range("C" & i), "IGU") Then
       glassCount = glassCount + 1
       glassWidthStr = ""
       glassHeightStr = ""
@@ -334,9 +334,9 @@ Sub Glass()
       widthStopCount = 0
           
       'Look in Description to get width and height
-      For c = 1 To Len(Worksheets(3).range("D" & i).Value)
+      For c = 1 To Len(Worksheets(3).Range("D" & i).Value)
         Dim currentChar As String
-        currentChar = Mid(Worksheets(3).range("D" & i).Value, c, 1)
+        currentChar = Mid(Worksheets(3).Range("D" & i).Value, c, 1)
         'Build up width measurement
         If widthStop = False Then
           If currentChar = " " Then
@@ -351,10 +351,10 @@ Sub Glass()
           If currentChar = " " Then
             glassWidth = Val(glassWidthStr)
             glassHeight = Val(glassHeightStr)
-            Worksheets(3).range("AW" & glassCount).Value = glassWidth
-            Worksheets(3).range("AX" & glassCount).Value = glassHeight
-            Worksheets(3).range("AY1").Value = "Oracle BOM line"
-            Worksheets(3).range("AY" & glassCount).Value = i
+            Worksheets(3).Range("AW" & glassCount).Value = glassWidth
+            Worksheets(3).Range("AX" & glassCount).Value = glassHeight
+            Worksheets(3).Range("AY1").Value = "Oracle BOM line"
+            Worksheets(3).Range("AY" & glassCount).Value = i
             Exit For
           Else
             glassHeightStr = glassHeightStr + currentChar
@@ -367,27 +367,27 @@ Sub Glass()
   
   'HFA GLASS LOOP
   'New Loop to remove duplicates for matching Glass, so that only IGU remains.  Modifying Array in AW and AX while adding AY
-  Worksheets(3).range("AZ1").Value = "HFA GLASS W"
-  Worksheets(3).range("BA1").Value = "HFA GLASS H"
+  Worksheets(3).Range("AZ1").Value = "HFA GLASS W"
+  Worksheets(3).Range("BA1").Value = "HFA GLASS H"
   
   Dim lastrowHFAGlass As Long
   Dim position As Integer
   
-  lastrowHFAGlass = Worksheets(3).range("AZ50").End(xlUp).Row
+  lastrowHFAGlass = Worksheets(3).Range("AZ50").End(xlUp).row
   For i = 2 To lastrowHFAGlass
     For j = 3 To lastrowHFAGlass
       If i <> j _
-      And Worksheets(3).range("AZ" & i).Value = Worksheets(3).range("AZ" & j).Value _
-      And Worksheets(3).range("BA" & i).Value = Worksheets(3).range("BA" & j).Value _
-      And Worksheets(3).range("BB" & j).Value <> "flagged" _
-      And IsEmpty(Worksheets(3).range("AY" & j).Value) Then
-        Worksheets(3).range("BB" & i).Value = "flagged"
-        Worksheets(3).range("AZ" & j).Value = "Duplicate"
-        Worksheets(3).range("BA" & j).Value = "Duplicate"
+      And Worksheets(3).Range("AZ" & i).Value = Worksheets(3).Range("AZ" & j).Value _
+      And Worksheets(3).Range("BA" & i).Value = Worksheets(3).Range("BA" & j).Value _
+      And Worksheets(3).Range("BB" & j).Value <> "flagged" _
+      And IsEmpty(Worksheets(3).Range("AY" & j).Value) Then
+        Worksheets(3).Range("BB" & i).Value = "flagged"
+        Worksheets(3).Range("AZ" & j).Value = "Duplicate"
+        Worksheets(3).Range("BA" & j).Value = "Duplicate"
         'Grey out HFA sheet measurement for Duplicate
-        position = Worksheets(3).range("BG" & j).Value
-        Worksheets(1).range("J" & position).Interior.Color = rgbGrey
-        Worksheets(1).range("K" & position).Interior.Color = rgbGrey
+        position = Worksheets(3).Range("BG" & j).Value
+        Worksheets(1).Range("J" & position).Interior.Color = rgbGrey
+        Worksheets(1).Range("K" & position).Interior.Color = rgbGrey
         Exit For
       End If
     Next j
@@ -400,44 +400,44 @@ Sub Glass()
   Dim hfaWidthCut As String, hfaHeightCut As String
   Dim hFAWidthCutLower As Double, hFAWidthCutUpper As Double, hFAHeightCutLower As Double, hFAHeightCutUpper As Double
   
-  lastrowOracleGlass = Worksheets(3).range("AW50").End(xlUp).Row
+  lastrowOracleGlass = Worksheets(3).Range("AW50").End(xlUp).row
    
   For j = 2 To lastrowHFAGlass
-    hfaWidthCut = Worksheets(3).range("AZ" & j).Value
-    hFAWidthCutLower = Val(Worksheets(3).range("AZ" & j).Value) - 0.0625
-    hFAWidthCutUpper = Val(Worksheets(3).range("AZ" & j).Value) + 0.0625
+    hfaWidthCut = Worksheets(3).Range("AZ" & j).Value
+    hFAWidthCutLower = Val(Worksheets(3).Range("AZ" & j).Value) - 0.0625
+    hFAWidthCutUpper = Val(Worksheets(3).Range("AZ" & j).Value) + 0.0625
         
-    hfaHeightCut = Worksheets(3).range("BA" & j).Value
-    hFAHeightCutLower = Val(Worksheets(3).range("BA" & j).Value) - 0.0625
-    hFAHeightCutUpper = Val(Worksheets(3).range("BA" & j).Value) + 0.0625
+    hfaHeightCut = Worksheets(3).Range("BA" & j).Value
+    hFAHeightCutLower = Val(Worksheets(3).Range("BA" & j).Value) - 0.0625
+    hFAHeightCutUpper = Val(Worksheets(3).Range("BA" & j).Value) + 0.0625
     
-    Worksheets(3).range("BC" & j).Value = hFAWidthCutLower
-    Worksheets(3).range("BD" & j).Value = hFAWidthCutUpper
-    Worksheets(3).range("BE" & j).Value = hFAHeightCutLower
-    Worksheets(3).range("BF" & j).Value = hFAHeightCutUpper
+    Worksheets(3).Range("BC" & j).Value = hFAWidthCutLower
+    Worksheets(3).Range("BD" & j).Value = hFAWidthCutUpper
+    Worksheets(3).Range("BE" & j).Value = hFAHeightCutLower
+    Worksheets(3).Range("BF" & j).Value = hFAHeightCutUpper
   
     For i = 2 To lastrowOracleGlass
       'See if both W and H match
-      If Worksheets(3).range("AW" & i).Value >= hFAWidthCutLower _
-      And Worksheets(3).range("AW" & i).Value <= hFAWidthCutUpper _
-      And Worksheets(3).range("AX" & i).Value >= hFAHeightCutLower _
-      And Worksheets(3).range("AX" & i).Value <= hFAHeightCutUpper _
-      And Worksheets(3).range("AY" & i).Interior.Color <> rgbGreen Then
-        position = Worksheets(3).range("AY" & i).Value
-        Worksheets(3).range("AY" & i).Interior.Color = rgbGreen
-        Worksheets(3).range("D" & position).Interior.Color = rgbGreen
-        Worksheets(3).range("A" & position).Interior.Color = rgbAqua
-        Worksheets(3).range("B" & position).Interior.Color = rgbAqua
-        Worksheets(3).range("C" & position).Interior.Color = rgbAqua
-        Worksheets(3).range("P" & position).Interior.Color = rgbAqua
-        Worksheets(3).range("B" & position).Value = "Correct Size"
+      If Worksheets(3).Range("AW" & i).Value >= hFAWidthCutLower _
+      And Worksheets(3).Range("AW" & i).Value <= hFAWidthCutUpper _
+      And Worksheets(3).Range("AX" & i).Value >= hFAHeightCutLower _
+      And Worksheets(3).Range("AX" & i).Value <= hFAHeightCutUpper _
+      And Worksheets(3).Range("AY" & i).Interior.Color <> rgbGreen Then
+        position = Worksheets(3).Range("AY" & i).Value
+        Worksheets(3).Range("AY" & i).Interior.Color = rgbGreen
+        Worksheets(3).Range("D" & position).Interior.Color = rgbGreen
+        Worksheets(3).Range("A" & position).Interior.Color = rgbAqua
+        Worksheets(3).Range("B" & position).Interior.Color = rgbAqua
+        Worksheets(3).Range("C" & position).Interior.Color = rgbAqua
+        Worksheets(3).Range("P" & position).Interior.Color = rgbAqua
+        Worksheets(3).Range("B" & position).Value = "Correct Size"
         'Input match for glass in Q if there is a match
-        Worksheets(3).range("Q" & position).Value = hfaWidthCut + " X " + hfaHeightCut
-        Worksheets(3).range("Q" & position).Interior.Color = rgbGreen
+        Worksheets(3).Range("Q" & position).Value = hfaWidthCut + " X " + hfaHeightCut
+        Worksheets(3).Range("Q" & position).Interior.Color = rgbGreen
         'Highlight HFA Page with correct glass
-        position = Worksheets(3).range("BG" & i).Value
-        Worksheets(1).range("J" & position).Interior.Color = rgbGreen
-        Worksheets(1).range("K" & position).Interior.Color = rgbGreen
+        position = Worksheets(3).Range("BG" & i).Value
+        Worksheets(1).Range("J" & position).Interior.Color = rgbGreen
+        Worksheets(1).Range("K" & position).Interior.Color = rgbGreen
         Exit For
       End If
     Next i
@@ -445,23 +445,23 @@ Sub Glass()
   
   'Glass Cleanup highlight bad glass
   'HFA
-  For j = 2 To Worksheets(1).range("A3000").End(xlUp).Row
-    If Worksheets(1).range("E" & j).Interior.Color = rgbOrange _
-    And Worksheets(1).range("J" & j).Interior.Color <> rgbGrey _
-    And Worksheets(1).range("J" & j).Interior.Color <> rgbGreen Then
-       Worksheets(1).range("J" & j).Interior.Color = rgbSalmon
-       Worksheets(1).range("K" & j).Interior.Color = rgbSalmon
+  For j = 2 To Worksheets(1).Range("A3000").End(xlUp).row
+    If Worksheets(1).Range("E" & j).Interior.Color = rgbOrange _
+    And Worksheets(1).Range("J" & j).Interior.Color <> rgbGrey _
+    And Worksheets(1).Range("J" & j).Interior.Color <> rgbGreen Then
+       Worksheets(1).Range("J" & j).Interior.Color = rgbSalmon
+       Worksheets(1).Range("K" & j).Interior.Color = rgbSalmon
     End If
   Next j
   
-  For j = 2 To Worksheets(3).range("C3000").End(xlUp).Row
-    If InStr(1, Worksheets(3).range("C" & j), "IGU") <> 0 _
-    And Worksheets(3).range("C" & j).Interior.Color <> rgbAqua Then
-       Worksheets(3).range("A" & j).Interior.Color = rgbSalmon
-       Worksheets(3).range("B" & j).Interior.Color = rgbSalmon
-       Worksheets(3).range("C" & j).Interior.Color = rgbSalmon
-       Worksheets(3).range("D" & j).Interior.Color = rgbSalmon
-       Worksheets(3).range("P" & j).Interior.Color = rgbSalmon
+  For j = 2 To Worksheets(3).Range("C3000").End(xlUp).row
+    If InStr(1, Worksheets(3).Range("C" & j), "IGU") <> 0 _
+    And Worksheets(3).Range("C" & j).Interior.Color <> rgbAqua Then
+       Worksheets(3).Range("A" & j).Interior.Color = rgbSalmon
+       Worksheets(3).Range("B" & j).Interior.Color = rgbSalmon
+       Worksheets(3).Range("C" & j).Interior.Color = rgbSalmon
+       Worksheets(3).Range("D" & j).Interior.Color = rgbSalmon
+       Worksheets(3).Range("P" & j).Interior.Color = rgbSalmon
     End If
   Next j
   
@@ -476,18 +476,18 @@ End Sub
   Dim screenCount As Integer, xMarker As Integer, screenFlatten As Integer
   screenCount = 1
   
-  For j = 2 To Worksheets(1).range("C3000").End(xlUp).Row
-    If Worksheets(1).range("H" & j).Value = "EA" _
-    And Worksheets(1).range("K" & j).Value <> 0 Then
-      For screenFlatten = Worksheets(1).range("F" & j).Value To 1 Step -1
-        Worksheets(4).range("AD" & screenCount).Value = j
-        Worksheets(4).range("AE" & screenCount).Value = Worksheets(1).range("E" & j).Value
-        Worksheets(4).range("AF" & screenCount).Value = Worksheets(1).range("J" & j).Value - 0.0625
-        Worksheets(4).range("AG" & screenCount).Value = Worksheets(1).range("J" & j).Value
-        Worksheets(4).range("AH" & screenCount).Value = Worksheets(1).range("J" & j).Value + 0.0625
-        Worksheets(4).range("AI" & screenCount).Value = Worksheets(1).range("K" & j).Value - 0.0625
-        Worksheets(4).range("AJ" & screenCount).Value = Worksheets(1).range("K" & j).Value
-        Worksheets(4).range("AK" & screenCount).Value = Worksheets(1).range("K" & j).Value + 0.0625
+  For j = 2 To Worksheets(1).Range("C3000").End(xlUp).row
+    If Worksheets(1).Range("H" & j).Value = "EA" _
+    And Worksheets(1).Range("K" & j).Value <> 0 Then
+      For screenFlatten = Worksheets(1).Range("F" & j).Value To 1 Step -1
+        Worksheets(4).Range("AD" & screenCount).Value = j
+        Worksheets(4).Range("AE" & screenCount).Value = Worksheets(1).Range("E" & j).Value
+        Worksheets(4).Range("AF" & screenCount).Value = Worksheets(1).Range("J" & j).Value - 0.0625
+        Worksheets(4).Range("AG" & screenCount).Value = Worksheets(1).Range("J" & j).Value
+        Worksheets(4).Range("AH" & screenCount).Value = Worksheets(1).Range("J" & j).Value + 0.0625
+        Worksheets(4).Range("AI" & screenCount).Value = Worksheets(1).Range("K" & j).Value - 0.0625
+        Worksheets(4).Range("AJ" & screenCount).Value = Worksheets(1).Range("K" & j).Value
+        Worksheets(4).Range("AK" & screenCount).Value = Worksheets(1).Range("K" & j).Value + 0.0625
         screenCount = screenCount + 1
       Next screenFlatten
     End If
@@ -495,39 +495,39 @@ End Sub
   
   'Oracle
   screenCount = 1
-  For j = 2 To Worksheets(3).range("C3000").End(xlUp).Row
-    If InStr(1, Worksheets(3).range("D" & j).Value, "Screen,") Then
-      Worksheets(4).range("AP" & screenCount).Value = j
-      Worksheets(4).range("AQ" & screenCount).Value = Worksheets(3).range("C" & j).Value
-      Worksheets(4).range("AR" & screenCount).Value = Worksheets(3).range("D" & j).Value
+  For j = 2 To Worksheets(3).Range("C3000").End(xlUp).row
+    If InStr(1, Worksheets(3).Range("D" & j).Value, "Screen,") Then
+      Worksheets(4).Range("AP" & screenCount).Value = j
+      Worksheets(4).Range("AQ" & screenCount).Value = Worksheets(3).Range("C" & j).Value
+      Worksheets(4).Range("AR" & screenCount).Value = Worksheets(3).Range("D" & j).Value
       'Width
-      xMarker = InStr(1, Worksheets(4).range("AR" & screenCount).Value, "x")
+      xMarker = InStr(1, Worksheets(4).Range("AR" & screenCount).Value, "x")
       'Hundreds Place
-      If IsNumeric(Mid(Worksheets(4).range("AR" & screenCount).Value, xMarker - 9, 1)) Then
-        Worksheets(4).range("AS" & screenCount).Value = Mid(Worksheets(4).range("AR" & screenCount).Value, xMarker - 9, 8)
-        Worksheets(4).range("AS" & screenCount).Interior.Color = RGB(102, 102, 204)
+      If IsNumeric(Mid(Worksheets(4).Range("AR" & screenCount).Value, xMarker - 9, 1)) Then
+        Worksheets(4).Range("AS" & screenCount).Value = Mid(Worksheets(4).Range("AR" & screenCount).Value, xMarker - 9, 8)
+        Worksheets(4).Range("AS" & screenCount).Interior.Color = RGB(102, 102, 204)
       'Tens Place
-      ElseIf IsNumeric(Mid(Worksheets(4).range("AR" & screenCount).Value, xMarker - 8, 1)) Then
-        Worksheets(4).range("AS" & screenCount).Value = Mid(Worksheets(4).range("AR" & screenCount).Value, xMarker - 8, 7)
-        Worksheets(4).range("AS" & screenCount).Interior.Color = rgbGreen
+      ElseIf IsNumeric(Mid(Worksheets(4).Range("AR" & screenCount).Value, xMarker - 8, 1)) Then
+        Worksheets(4).Range("AS" & screenCount).Value = Mid(Worksheets(4).Range("AR" & screenCount).Value, xMarker - 8, 7)
+        Worksheets(4).Range("AS" & screenCount).Interior.Color = rgbGreen
       'Ones Place
       Else
-        Worksheets(4).range("AS" & screenCount).Value = Mid(Worksheets(4).range("AR" & screenCount).Value, xMarker - 7, 6)
-        Worksheets(4).range("AS" & screenCount).Interior.Color = rgbGold
+        Worksheets(4).Range("AS" & screenCount).Value = Mid(Worksheets(4).Range("AR" & screenCount).Value, xMarker - 7, 6)
+        Worksheets(4).Range("AS" & screenCount).Interior.Color = rgbGold
       End If
       'Height
       'Hundreds Place
-      If IsNumeric(Mid(Worksheets(4).range("AR" & screenCount).Value, xMarker + 9, 1)) Then
-        Worksheets(4).range("AT" & screenCount).Value = Mid(Worksheets(4).range("AR" & screenCount).Value, xMarker + 2, 8)
-        Worksheets(4).range("AT" & screenCount).Interior.Color = RGB(102, 102, 204)
+      If IsNumeric(Mid(Worksheets(4).Range("AR" & screenCount).Value, xMarker + 9, 1)) Then
+        Worksheets(4).Range("AT" & screenCount).Value = Mid(Worksheets(4).Range("AR" & screenCount).Value, xMarker + 2, 8)
+        Worksheets(4).Range("AT" & screenCount).Interior.Color = RGB(102, 102, 204)
       'Tens Place
-      ElseIf IsNumeric(Mid(Worksheets(4).range("AR" & screenCount).Value, xMarker + 8, 1)) Then
-        Worksheets(4).range("AT" & screenCount).Value = Mid(Worksheets(4).range("AR" & screenCount).Value, xMarker + 2, 7)
-        Worksheets(4).range("AT" & screenCount).Interior.Color = rgbGreen
+      ElseIf IsNumeric(Mid(Worksheets(4).Range("AR" & screenCount).Value, xMarker + 8, 1)) Then
+        Worksheets(4).Range("AT" & screenCount).Value = Mid(Worksheets(4).Range("AR" & screenCount).Value, xMarker + 2, 7)
+        Worksheets(4).Range("AT" & screenCount).Interior.Color = rgbGreen
       'Ones Place
       Else
-        Worksheets(4).range("AT" & screenCount).Value = Mid(Worksheets(4).range("AR" & screenCount).Value, xMarker + 2, 6)
-        Worksheets(4).range("AT" & screenCount).Interior.Color = rgbGold
+        Worksheets(4).Range("AT" & screenCount).Value = Mid(Worksheets(4).Range("AR" & screenCount).Value, xMarker + 2, 6)
+        Worksheets(4).Range("AT" & screenCount).Interior.Color = rgbGold
       End If
       screenCount = screenCount + 1
     End If
@@ -536,36 +536,36 @@ End Sub
   'Perfect Match
   'Compare Oracle to HFA
   screenCount = 1
-  If Worksheets(4).range("AQ1").Value <> "" And Worksheets(4).range("AE1").Value <> "" Then
-    For j = 1 To Worksheets(4).range("AQ50").End(xlUp).Row
-      For i = 1 To Worksheets(4).range("AE50").End(xlUp).Row
-        If InStr(1, Worksheets(4).range("AQ" & j).Value, Worksheets(4).range("AE" & i).Value) <> 0 _
-        And Worksheets(4).range("AS" & j).Value >= Worksheets(4).range("AF" & i).Value _
-        And Worksheets(4).range("AS" & j).Value <= Worksheets(4).range("AH" & i).Value _
-        And Worksheets(4).range("AT" & j).Value >= Worksheets(4).range("AI" & i).Value _
-        And Worksheets(4).range("AT" & j).Value <= Worksheets(4).range("AK" & i).Value _
-        And Worksheets(4).range("AQ" & j).Interior.Color <> rgbGreen _
-        And Worksheets(4).range("AE" & i).Interior.Color <> rgbGreen Then
+  If Worksheets(4).Range("AQ1").Value <> "" And Worksheets(4).Range("AE1").Value <> "" Then
+    For j = 1 To Worksheets(4).Range("AQ50").End(xlUp).row
+      For i = 1 To Worksheets(4).Range("AE50").End(xlUp).row
+        If InStr(1, Worksheets(4).Range("AQ" & j).Value, Worksheets(4).Range("AE" & i).Value) <> 0 _
+        And Worksheets(4).Range("AS" & j).Value >= Worksheets(4).Range("AF" & i).Value _
+        And Worksheets(4).Range("AS" & j).Value <= Worksheets(4).Range("AH" & i).Value _
+        And Worksheets(4).Range("AT" & j).Value >= Worksheets(4).Range("AI" & i).Value _
+        And Worksheets(4).Range("AT" & j).Value <= Worksheets(4).Range("AK" & i).Value _
+        And Worksheets(4).Range("AQ" & j).Interior.Color <> rgbGreen _
+        And Worksheets(4).Range("AE" & i).Interior.Color <> rgbGreen Then
           'Page 4
-          Worksheets(4).range("AQ" & j).Interior.Color = rgbGreen
-          Worksheets(4).range("AE" & i).Interior.Color = rgbGreen
+          Worksheets(4).Range("AQ" & j).Interior.Color = rgbGreen
+          Worksheets(4).Range("AE" & i).Interior.Color = rgbGreen
           'Page 3
-          Worksheets(3).range("A" & Worksheets(4).range("AP" & j).Value).Interior.Color = rgbAqua
-          Worksheets(3).range("B" & Worksheets(4).range("AP" & j).Value).Interior.Color = rgbAqua
-          Worksheets(3).range("C" & Worksheets(4).range("AP" & j).Value).Interior.Color = rgbAqua
-          Worksheets(3).range("D" & Worksheets(4).range("AP" & j).Value).Interior.Color = rgbGreen
-          Worksheets(3).range("P" & Worksheets(4).range("AP" & j).Value).Interior.Color = rgbAqua
-          Worksheets(3).range("Q" & Worksheets(4).range("AP" & j).Value).Interior.Color = rgbGreen
-          Worksheets(3).range("Q" & Worksheets(4).range("AP" & j).Value).Value = Worksheets(4).range("AG" & i).Value & " X " & Worksheets(4).range("AJ" & i).Value
+          Worksheets(3).Range("A" & Worksheets(4).Range("AP" & j).Value).Interior.Color = rgbAqua
+          Worksheets(3).Range("B" & Worksheets(4).Range("AP" & j).Value).Interior.Color = rgbAqua
+          Worksheets(3).Range("C" & Worksheets(4).Range("AP" & j).Value).Interior.Color = rgbAqua
+          Worksheets(3).Range("D" & Worksheets(4).Range("AP" & j).Value).Interior.Color = rgbGreen
+          Worksheets(3).Range("P" & Worksheets(4).Range("AP" & j).Value).Interior.Color = rgbAqua
+          Worksheets(3).Range("Q" & Worksheets(4).Range("AP" & j).Value).Interior.Color = rgbGreen
+          Worksheets(3).Range("Q" & Worksheets(4).Range("AP" & j).Value).Value = Worksheets(4).Range("AG" & i).Value & " X " & Worksheets(4).Range("AJ" & i).Value
           'Page 1
-          Worksheets(1).range("A" & Worksheets(4).range("AD" & i).Value).Interior.Color = rgbAqua
-          Worksheets(1).range("B" & Worksheets(4).range("AD" & i).Value).Interior.Color = rgbAqua
-          Worksheets(1).range("C" & Worksheets(4).range("AD" & i).Value).Interior.Color = rgbAqua
-          Worksheets(1).range("D" & Worksheets(4).range("AD" & i).Value).Interior.Color = rgbAqua
-          Worksheets(1).range("E" & Worksheets(4).range("AD" & i).Value).Interior.Color = rgbAqua
-          Worksheets(1).range("F" & Worksheets(4).range("AD" & i).Value).Interior.Color = rgbAqua
-          Worksheets(1).range("J" & Worksheets(4).range("AD" & i).Value).Interior.Color = rgbGreen
-          Worksheets(1).range("K" & Worksheets(4).range("AD" & i).Value).Interior.Color = rgbGreen
+          Worksheets(1).Range("A" & Worksheets(4).Range("AD" & i).Value).Interior.Color = rgbAqua
+          Worksheets(1).Range("B" & Worksheets(4).Range("AD" & i).Value).Interior.Color = rgbAqua
+          Worksheets(1).Range("C" & Worksheets(4).Range("AD" & i).Value).Interior.Color = rgbAqua
+          Worksheets(1).Range("D" & Worksheets(4).Range("AD" & i).Value).Interior.Color = rgbAqua
+          Worksheets(1).Range("E" & Worksheets(4).Range("AD" & i).Value).Interior.Color = rgbAqua
+          Worksheets(1).Range("F" & Worksheets(4).Range("AD" & i).Value).Interior.Color = rgbAqua
+          Worksheets(1).Range("J" & Worksheets(4).Range("AD" & i).Value).Interior.Color = rgbGreen
+          Worksheets(1).Range("K" & Worksheets(4).Range("AD" & i).Value).Interior.Color = rgbGreen
         End If
       Next i
     Next j
@@ -573,60 +573,60 @@ End Sub
     'Match If Cuts are equal but part is not
     'Compare Oracle to HFA
     screenCount = 1
-    For j = 1 To Worksheets(4).range("AQ50").End(xlUp).Row
-      For i = 1 To Worksheets(4).range("AE50").End(xlUp).Row
-        If Worksheets(4).range("AS" & j).Value >= Worksheets(4).range("AF" & i).Value _
-        And Worksheets(4).range("AS" & j).Value <= Worksheets(4).range("AH" & i).Value _
-        And Worksheets(4).range("AT" & j).Value >= Worksheets(4).range("AI" & i).Value _
-        And Worksheets(4).range("AT" & j).Value <= Worksheets(4).range("AK" & i).Value _
-        And Worksheets(4).range("AQ" & j).Interior.Color <> rgbGreen _
-        And Worksheets(4).range("AE" & i).Interior.Color <> rgbGreen Then
+    For j = 1 To Worksheets(4).Range("AQ50").End(xlUp).row
+      For i = 1 To Worksheets(4).Range("AE50").End(xlUp).row
+        If Worksheets(4).Range("AS" & j).Value >= Worksheets(4).Range("AF" & i).Value _
+        And Worksheets(4).Range("AS" & j).Value <= Worksheets(4).Range("AH" & i).Value _
+        And Worksheets(4).Range("AT" & j).Value >= Worksheets(4).Range("AI" & i).Value _
+        And Worksheets(4).Range("AT" & j).Value <= Worksheets(4).Range("AK" & i).Value _
+        And Worksheets(4).Range("AQ" & j).Interior.Color <> rgbGreen _
+        And Worksheets(4).Range("AE" & i).Interior.Color <> rgbGreen Then
           'Page 4
-          Worksheets(4).range("AQ" & j).Interior.Color = rgbGreen
-          Worksheets(4).range("AE" & i).Interior.Color = rgbGreen
+          Worksheets(4).Range("AQ" & j).Interior.Color = rgbGreen
+          Worksheets(4).Range("AE" & i).Interior.Color = rgbGreen
           'Page 3
-          Worksheets(3).range("A" & Worksheets(4).range("AP" & j).Value).Interior.Color = rgbSalmon
-          Worksheets(3).range("B" & Worksheets(4).range("AP" & j).Value).Interior.Color = rgbSalmon
-          Worksheets(3).range("C" & Worksheets(4).range("AP" & j).Value).Interior.Color = rgbSalmon
-          Worksheets(3).range("D" & Worksheets(4).range("AP" & j).Value).Interior.Color = rgbGreen
-          Worksheets(3).range("P" & Worksheets(4).range("AP" & j).Value).Interior.Color = rgbAqua
-          Worksheets(3).range("Q" & Worksheets(4).range("AP" & j).Value).Interior.Color = rgbGreen
-          Worksheets(3).range("Q" & Worksheets(4).range("AP" & j).Value).Value = Worksheets(4).range("AG" & i).Value & " X " & Worksheets(4).range("AJ" & i).Value
+          Worksheets(3).Range("A" & Worksheets(4).Range("AP" & j).Value).Interior.Color = rgbSalmon
+          Worksheets(3).Range("B" & Worksheets(4).Range("AP" & j).Value).Interior.Color = rgbSalmon
+          Worksheets(3).Range("C" & Worksheets(4).Range("AP" & j).Value).Interior.Color = rgbSalmon
+          Worksheets(3).Range("D" & Worksheets(4).Range("AP" & j).Value).Interior.Color = rgbGreen
+          Worksheets(3).Range("P" & Worksheets(4).Range("AP" & j).Value).Interior.Color = rgbAqua
+          Worksheets(3).Range("Q" & Worksheets(4).Range("AP" & j).Value).Interior.Color = rgbGreen
+          Worksheets(3).Range("Q" & Worksheets(4).Range("AP" & j).Value).Value = Worksheets(4).Range("AG" & i).Value & " X " & Worksheets(4).Range("AJ" & i).Value
           'Page 1
-          Worksheets(1).range("A" & Worksheets(4).range("AD" & i).Value).Interior.Color = rgbSalmon
-          Worksheets(1).range("B" & Worksheets(4).range("AD" & i).Value).Interior.Color = rgbSalmon
-          Worksheets(1).range("C" & Worksheets(4).range("AD" & i).Value).Interior.Color = rgbSalmon
-          Worksheets(1).range("D" & Worksheets(4).range("AD" & i).Value).Interior.Color = rgbSalmon
-          Worksheets(1).range("E" & Worksheets(4).range("AD" & i).Value).Interior.Color = rgbSalmon
-          Worksheets(1).range("F" & Worksheets(4).range("AD" & i).Value).Interior.Color = rgbAqua
-          Worksheets(1).range("J" & Worksheets(4).range("AD" & i).Value).Interior.Color = rgbGreen
-          Worksheets(1).range("K" & Worksheets(4).range("AD" & i).Value).Interior.Color = rgbGreen
+          Worksheets(1).Range("A" & Worksheets(4).Range("AD" & i).Value).Interior.Color = rgbSalmon
+          Worksheets(1).Range("B" & Worksheets(4).Range("AD" & i).Value).Interior.Color = rgbSalmon
+          Worksheets(1).Range("C" & Worksheets(4).Range("AD" & i).Value).Interior.Color = rgbSalmon
+          Worksheets(1).Range("D" & Worksheets(4).Range("AD" & i).Value).Interior.Color = rgbSalmon
+          Worksheets(1).Range("E" & Worksheets(4).Range("AD" & i).Value).Interior.Color = rgbSalmon
+          Worksheets(1).Range("F" & Worksheets(4).Range("AD" & i).Value).Interior.Color = rgbAqua
+          Worksheets(1).Range("J" & Worksheets(4).Range("AD" & i).Value).Interior.Color = rgbGreen
+          Worksheets(1).Range("K" & Worksheets(4).Range("AD" & i).Value).Interior.Color = rgbGreen
         End If
       Next i
     Next j
     
     'CleanUp
     'Oracle
-    For j = 1 To Worksheets(4).range("AQ50").End(xlUp).Row
-      If Worksheets(4).range("AQ" & j).Interior.Color <> rgbGreen Then
-        Worksheets(3).range("A" & Worksheets(4).range("AP" & j).Value).Interior.Color = rgbSalmon
-        Worksheets(3).range("B" & Worksheets(4).range("AP" & j).Value).Interior.Color = rgbSalmon
-        Worksheets(3).range("C" & Worksheets(4).range("AP" & j).Value).Interior.Color = rgbSalmon
-        Worksheets(3).range("D" & Worksheets(4).range("AP" & j).Value).Interior.Color = rgbSalmon
-        Worksheets(3).range("P" & Worksheets(4).range("AP" & j).Value).Interior.Color = rgbSalmon
+    For j = 1 To Worksheets(4).Range("AQ50").End(xlUp).row
+      If Worksheets(4).Range("AQ" & j).Interior.Color <> rgbGreen Then
+        Worksheets(3).Range("A" & Worksheets(4).Range("AP" & j).Value).Interior.Color = rgbSalmon
+        Worksheets(3).Range("B" & Worksheets(4).Range("AP" & j).Value).Interior.Color = rgbSalmon
+        Worksheets(3).Range("C" & Worksheets(4).Range("AP" & j).Value).Interior.Color = rgbSalmon
+        Worksheets(3).Range("D" & Worksheets(4).Range("AP" & j).Value).Interior.Color = rgbSalmon
+        Worksheets(3).Range("P" & Worksheets(4).Range("AP" & j).Value).Interior.Color = rgbSalmon
       End If
     Next j
     'HFA
-    For j = 1 To Worksheets(4).range("AE50").End(xlUp).Row
-      If Worksheets(4).range("AE" & j).Interior.Color <> rgbGreen Then
-        Worksheets(1).range("A" & Worksheets(4).range("AD" & j).Value).Interior.Color = rgbSalmon
-        Worksheets(1).range("B" & Worksheets(4).range("AD" & j).Value).Interior.Color = rgbSalmon
-        Worksheets(1).range("C" & Worksheets(4).range("AD" & j).Value).Interior.Color = rgbSalmon
-        Worksheets(1).range("D" & Worksheets(4).range("AD" & j).Value).Interior.Color = rgbSalmon
-        Worksheets(1).range("E" & Worksheets(4).range("AD" & j).Value).Interior.Color = rgbSalmon
-        Worksheets(1).range("F" & Worksheets(4).range("AD" & j).Value).Interior.Color = rgbSalmon
-        Worksheets(1).range("J" & Worksheets(4).range("AD" & j).Value).Interior.Color = rgbSalmon
-        Worksheets(1).range("K" & Worksheets(4).range("AD" & j).Value).Interior.Color = rgbSalmon
+    For j = 1 To Worksheets(4).Range("AE50").End(xlUp).row
+      If Worksheets(4).Range("AE" & j).Interior.Color <> rgbGreen Then
+        Worksheets(1).Range("A" & Worksheets(4).Range("AD" & j).Value).Interior.Color = rgbSalmon
+        Worksheets(1).Range("B" & Worksheets(4).Range("AD" & j).Value).Interior.Color = rgbSalmon
+        Worksheets(1).Range("C" & Worksheets(4).Range("AD" & j).Value).Interior.Color = rgbSalmon
+        Worksheets(1).Range("D" & Worksheets(4).Range("AD" & j).Value).Interior.Color = rgbSalmon
+        Worksheets(1).Range("E" & Worksheets(4).Range("AD" & j).Value).Interior.Color = rgbSalmon
+        Worksheets(1).Range("F" & Worksheets(4).Range("AD" & j).Value).Interior.Color = rgbSalmon
+        Worksheets(1).Range("J" & Worksheets(4).Range("AD" & j).Value).Interior.Color = rgbSalmon
+        Worksheets(1).Range("K" & Worksheets(4).Range("AD" & j).Value).Interior.Color = rgbSalmon
       End If
     Next j
   End If
@@ -647,16 +647,16 @@ Sub XDash()
   oracleCutIndex = 1
      
   'Loop to get all X- parts from Oracle
-  For i = 2 To Worksheets(3).range("C3000").End(xlUp).Row
-      If Worksheets(3).range("A" & i).Interior.Color <> rgbGrey _
-      And InStr(Worksheets(3).range("C" & i), "X-") <> 0 Then
+  For i = 2 To Worksheets(3).Range("C3000").End(xlUp).row
+      If Worksheets(3).Range("A" & i).Interior.Color <> rgbGrey _
+      And InStr(Worksheets(3).Range("C" & i), "X-") <> 0 Then
         hasRun = False
         startIndex = 0
         strIndexCount = 0
         buildingString = ""
-        For b = 1 To Len(Worksheets(3).range("D" & i).Value)
+        For b = 1 To Len(Worksheets(3).Range("D" & i).Value)
           Dim currentDChar As String
-          currentDChar = Mid(Worksheets(3).range("D" & i).Value, b, 1)
+          currentDChar = Mid(Worksheets(3).Range("D" & i).Value, b, 1)
           buildingString = buildingString + currentDChar
           If IsNumeric(currentDChar) = True And InStr(buildingString, "Cut to") <> 0 Then
             strIndexCount = strIndexCount + 1
@@ -669,42 +669,42 @@ Sub XDash()
         
         'Slice X- to get just the part
         starSlice = ""
-        For j = (InStr(1, Worksheets(3).range("C" & i).Value, "X-") + 2) To Len(Worksheets(3).range("C" & i).Value)
-          If Mid(Worksheets(3).range("C" & i).Value, j, 1) = "*" Then
+        For j = (InStr(1, Worksheets(3).Range("C" & i).Value, "X-") + 2) To Len(Worksheets(3).Range("C" & i).Value)
+          If Mid(Worksheets(3).Range("C" & i).Value, j, 1) = "*" Then
             Exit For
           End If
-          starSlice = starSlice + Mid(Worksheets(3).range("C" & i).Value, j, 1)
+          starSlice = starSlice + Mid(Worksheets(3).Range("C" & i).Value, j, 1)
         Next j
         
-        descriptionStr = Worksheets(3).range("D" & i).Value
+        descriptionStr = Worksheets(3).Range("D" & i).Value
         oracleCutStr = Mid(descriptionStr, startIndex, strIndexCount + 1)
         oracleCut = Val(oracleCutStr)
     
-        For oracleFlatten = Worksheets(3).range("P" & i).Value To 1 Step -1
-          Worksheets(4).range("J" & oracleCutIndex).Value = i
-          Worksheets(4).range("K" & oracleCutIndex).Value = Worksheets(3).range("C" & i).Value
-          Worksheets(4).range("L" & oracleCutIndex).Value = oracleCut
-          Worksheets(4).range("M" & oracleCutIndex).Value = Worksheets(3).range("P" & i).Value
-          Worksheets(4).range("N" & oracleCutIndex).Value = starSlice
+        For oracleFlatten = Worksheets(3).Range("P" & i).Value To 1 Step -1
+          Worksheets(4).Range("J" & oracleCutIndex).Value = i
+          Worksheets(4).Range("K" & oracleCutIndex).Value = Worksheets(3).Range("C" & i).Value
+          Worksheets(4).Range("L" & oracleCutIndex).Value = oracleCut
+          Worksheets(4).Range("M" & oracleCutIndex).Value = Worksheets(3).Range("P" & i).Value
+          Worksheets(4).Range("N" & oracleCutIndex).Value = starSlice
           oracleCutIndex = oracleCutIndex + 1
         Next oracleFlatten
       End If
   Next i
   
  'Sort Oracle list A-Z
-  Worksheets(4).range("J1:N100").Sort Key1:=range("N1"), Order1:=xlAscending, Header:=xlGuess, OrderCustom:=1, MatchCase:=False, Orientation:=xlTopToBottom, DataOption1:=xlSortNormal
+  Worksheets(4).Range("J1:N100").Sort Key1:=Range("N1"), Order1:=xlAscending, Header:=xlGuess, OrderCustom:=1, MatchCase:=False, Orientation:=xlTopToBottom, DataOption1:=xlSortNormal
   
   'PERFECT MATCH - GREEN
   'Oracle to HFA comparison match
   'All HFA column starts out RED
-  For y = 1 To Worksheets(4).range("N3000").End(xlUp).Row
+  For y = 1 To Worksheets(4).Range("N3000").End(xlUp).row
     match = False
-    For z = 1 To Worksheets(4).range("B3000").End(xlUp).Row
-      If Worksheets(4).range("N" & y).Value = Worksheets(4).range("B" & z).Value _
-      And Worksheets(4).range("B" & z).Interior.Color <> rgbGreen _
-      And ((Worksheets(4).range("L" & y).Value >= Worksheets(4).range("C" & z).Value And Worksheets(4).range("L" & y).Value <= Worksheets(4).range("E" & z).Value) Or Worksheets(4).range("D" & z).Value = 1) Then
-        Worksheets(4).range("N" & y).Interior.Color = rgbGreen
-        Worksheets(4).range("B" & z).Interior.Color = rgbGreen
+    For z = 1 To Worksheets(4).Range("B3000").End(xlUp).row
+      If Worksheets(4).Range("N" & y).Value = Worksheets(4).Range("B" & z).Value _
+      And Worksheets(4).Range("B" & z).Interior.Color <> rgbGreen _
+      And ((Worksheets(4).Range("L" & y).Value >= Worksheets(4).Range("C" & z).Value And Worksheets(4).Range("L" & y).Value <= Worksheets(4).Range("E" & z).Value) Or Worksheets(4).Range("D" & z).Value = 1) Then
+        Worksheets(4).Range("N" & y).Interior.Color = rgbGreen
+        Worksheets(4).Range("B" & z).Interior.Color = rgbGreen
         match = True
         Exit For
       End If
@@ -714,14 +714,14 @@ Sub XDash()
  'BAD CUTS - BLUE
  'Loop to compare unmatched Oracle column to HFA. Identify items that match but the lengths do not.
  'This will catch any bad cuts and before addressing quantity
-  For z = 1 To Worksheets(4).range("N3000").End(xlUp).Row
-    If Worksheets(4).range("N" & z).Interior.Color <> rgbGreen _
-    And Worksheets(4).range("N" & z).Interior.Color <> rgbGold Then
-      For y = 1 To Worksheets(4).range("B3000").End(xlUp).Row
-        If Worksheets(4).range("B" & y).Value = Worksheets(4).range("N" & z).Value _
-        And Worksheets(4).range("B" & y).Interior.Color = rgbRed Then
-          Worksheets(4).range("N" & z).Interior.Color = RGB(102, 102, 204)
-          Worksheets(4).range("B" & y).Interior.Color = RGB(102, 102, 204)
+  For z = 1 To Worksheets(4).Range("N3000").End(xlUp).row
+    If Worksheets(4).Range("N" & z).Interior.Color <> rgbGreen _
+    And Worksheets(4).Range("N" & z).Interior.Color <> rgbGold Then
+      For y = 1 To Worksheets(4).Range("B3000").End(xlUp).row
+        If Worksheets(4).Range("B" & y).Value = Worksheets(4).Range("N" & z).Value _
+        And Worksheets(4).Range("B" & y).Interior.Color = rgbRed Then
+          Worksheets(4).Range("N" & z).Interior.Color = RGB(102, 102, 204)
+          Worksheets(4).Range("B" & y).Interior.Color = RGB(102, 102, 204)
           Exit For
         End If
       Next y
@@ -731,13 +731,13 @@ Sub XDash()
   'BAD QUANTITY - GOLD
   'Check "HFA" Column for ID's that are both green and blank due to unmatched "HFA" lines
   'Partial approved lines due to quantity off
-  For z = 1 To Worksheets(4).range("B3000").End(xlUp).Row
-    If Worksheets(4).range("B" & z).Interior.Color <> rgbGreen Then
-      For y = 1 To Worksheets(4).range("B3000").End(xlUp).Row
-        If Worksheets(4).range("A" & y).Value = Worksheets(4).range("A" & z).Value _
-        And Worksheets(4).range("B" & y).Interior.Color = rgbGreen Then
+  For z = 1 To Worksheets(4).Range("B3000").End(xlUp).row
+    If Worksheets(4).Range("B" & z).Interior.Color <> rgbGreen Then
+      For y = 1 To Worksheets(4).Range("B3000").End(xlUp).row
+        If Worksheets(4).Range("A" & y).Value = Worksheets(4).Range("A" & z).Value _
+        And Worksheets(4).Range("B" & y).Interior.Color = rgbGreen Then
           'Change from blank to gold
-          Worksheets(4).range("B" & z).Interior.Color = rgbGold
+          Worksheets(4).Range("B" & z).Interior.Color = rgbGold
           Exit For
         End If
       Next y
@@ -745,13 +745,13 @@ Sub XDash()
   Next z
   'Check "Oracle" Column for ID's that are both green and blank due to unmatched "Oracle" lines
   'Partial approved lines due to quantity off
-  For z = 1 To Worksheets(4).range("N3000").End(xlUp).Row
-    If Worksheets(4).range("N" & z).Interior.Color <> rgbGreen Then
-      For y = 1 To Worksheets(4).range("N3000").End(xlUp).Row
-        If Worksheets(4).range("J" & y).Value = Worksheets(4).range("J" & z).Value _
-        And Worksheets(4).range("N" & y).Interior.Color = rgbGreen Then
+  For z = 1 To Worksheets(4).Range("N3000").End(xlUp).row
+    If Worksheets(4).Range("N" & z).Interior.Color <> rgbGreen Then
+      For y = 1 To Worksheets(4).Range("N3000").End(xlUp).row
+        If Worksheets(4).Range("J" & y).Value = Worksheets(4).Range("J" & z).Value _
+        And Worksheets(4).Range("N" & y).Interior.Color = rgbGreen Then
           'Change from blank to gold
-          Worksheets(4).range("N" & z).Interior.Color = rgbGold
+          Worksheets(4).Range("N" & z).Interior.Color = rgbGold
           Exit For
         End If
       Next y
@@ -761,48 +761,48 @@ Sub XDash()
 '------------------------------------------------------------------------------------------------
   'ORACLE
   'Hightlight Validation page with Green
-  For z = 1 To Worksheets(4).range("N3000").End(xlUp).Row
-    If Worksheets(4).range("N" & z).Interior.Color = rgbGreen Then
-      Worksheets(3).range("D" & Worksheets(4).range("J" & z).Value).Interior.Color = rgbGreen
-      Worksheets(3).range("A" & Worksheets(4).range("J" & z).Value).Interior.Color = rgbAqua
-      Worksheets(3).range("B" & Worksheets(4).range("J" & z).Value).Interior.Color = rgbAqua
-      Worksheets(3).range("C" & Worksheets(4).range("J" & z).Value).Interior.Color = rgbAqua
-      Worksheets(3).range("P" & Worksheets(4).range("J" & z).Value).Interior.Color = rgbAqua
+  For z = 1 To Worksheets(4).Range("N3000").End(xlUp).row
+    If Worksheets(4).Range("N" & z).Interior.Color = rgbGreen Then
+      Worksheets(3).Range("D" & Worksheets(4).Range("J" & z).Value).Interior.Color = rgbGreen
+      Worksheets(3).Range("A" & Worksheets(4).Range("J" & z).Value).Interior.Color = rgbAqua
+      Worksheets(3).Range("B" & Worksheets(4).Range("J" & z).Value).Interior.Color = rgbAqua
+      Worksheets(3).Range("C" & Worksheets(4).Range("J" & z).Value).Interior.Color = rgbAqua
+      Worksheets(3).Range("P" & Worksheets(4).Range("J" & z).Value).Interior.Color = rgbAqua
     End If
   Next z
   
   'Hightlight Validation page with Blue
-  For z = 1 To Worksheets(4).range("N3000").End(xlUp).Row
-    If Worksheets(4).range("N" & z).Interior.Color = RGB(102, 102, 204) Then
-      Worksheets(3).range("D" & Worksheets(4).range("J" & z).Value).Interior.Color = rgbSalmon
-      Worksheets(3).range("A" & Worksheets(4).range("J" & z).Value).Interior.Color = rgbAqua
-      Worksheets(3).range("B" & Worksheets(4).range("J" & z).Value).Interior.Color = rgbAqua
-      Worksheets(3).range("C" & Worksheets(4).range("J" & z).Value).Interior.Color = rgbAqua
-      Worksheets(3).range("P" & Worksheets(4).range("J" & z).Value).Interior.Color = rgbAqua
+  For z = 1 To Worksheets(4).Range("N3000").End(xlUp).row
+    If Worksheets(4).Range("N" & z).Interior.Color = RGB(102, 102, 204) Then
+      Worksheets(3).Range("D" & Worksheets(4).Range("J" & z).Value).Interior.Color = rgbSalmon
+      Worksheets(3).Range("A" & Worksheets(4).Range("J" & z).Value).Interior.Color = rgbAqua
+      Worksheets(3).Range("B" & Worksheets(4).Range("J" & z).Value).Interior.Color = rgbAqua
+      Worksheets(3).Range("C" & Worksheets(4).Range("J" & z).Value).Interior.Color = rgbAqua
+      Worksheets(3).Range("P" & Worksheets(4).Range("J" & z).Value).Interior.Color = rgbAqua
     End If
   Next z
   
   'Hightlight Validation page with Gold
-  For z = 1 To Worksheets(4).range("N3000").End(xlUp).Row
-    If Worksheets(4).range("N" & z).Interior.Color = rgbGold Then
-      Worksheets(3).range("A" & Worksheets(4).range("J" & z).Value).Interior.Color = rgbAqua
-      Worksheets(3).range("B" & Worksheets(4).range("J" & z).Value).Interior.Color = rgbAqua
-      Worksheets(3).range("C" & Worksheets(4).range("J" & z).Value).Interior.Color = rgbAqua
-      Worksheets(3).range("P" & Worksheets(4).range("J" & z).Value).Interior.Color = rgbSalmon
-      If Worksheets(3).range("D" & Worksheets(4).range("J" & z).Value).Interior.Color <> rgbGreen Then
-        Worksheets(3).range("D" & Worksheets(4).range("J" & z).Value).Interior.Color = rgbSalmon
+  For z = 1 To Worksheets(4).Range("N3000").End(xlUp).row
+    If Worksheets(4).Range("N" & z).Interior.Color = rgbGold Then
+      Worksheets(3).Range("A" & Worksheets(4).Range("J" & z).Value).Interior.Color = rgbAqua
+      Worksheets(3).Range("B" & Worksheets(4).Range("J" & z).Value).Interior.Color = rgbAqua
+      Worksheets(3).Range("C" & Worksheets(4).Range("J" & z).Value).Interior.Color = rgbAqua
+      Worksheets(3).Range("P" & Worksheets(4).Range("J" & z).Value).Interior.Color = rgbSalmon
+      If Worksheets(3).Range("D" & Worksheets(4).Range("J" & z).Value).Interior.Color <> rgbGreen Then
+        Worksheets(3).Range("D" & Worksheets(4).Range("J" & z).Value).Interior.Color = rgbSalmon
       End If
     End If
   Next z
   
   'Hightlight Validation page with Blank
-  For z = 1 To Worksheets(4).range("N3000").End(xlUp).Row
-    If Worksheets(4).range("N" & z).Interior.ColorIndex = xlNone Then
-      Worksheets(3).range("A" & Worksheets(4).range("J" & z).Value).Interior.Color = rgbSalmon
-      Worksheets(3).range("B" & Worksheets(4).range("J" & z).Value).Interior.Color = rgbSalmon
-      Worksheets(3).range("C" & Worksheets(4).range("J" & z).Value).Interior.Color = rgbSalmon
-      Worksheets(3).range("D" & Worksheets(4).range("J" & z).Value).Interior.Color = rgbSalmon
-      Worksheets(3).range("P" & Worksheets(4).range("J" & z).Value).Interior.Color = rgbSalmon
+  For z = 1 To Worksheets(4).Range("N3000").End(xlUp).row
+    If Worksheets(4).Range("N" & z).Interior.ColorIndex = xlNone Then
+      Worksheets(3).Range("A" & Worksheets(4).Range("J" & z).Value).Interior.Color = rgbSalmon
+      Worksheets(3).Range("B" & Worksheets(4).Range("J" & z).Value).Interior.Color = rgbSalmon
+      Worksheets(3).Range("C" & Worksheets(4).Range("J" & z).Value).Interior.Color = rgbSalmon
+      Worksheets(3).Range("D" & Worksheets(4).Range("J" & z).Value).Interior.Color = rgbSalmon
+      Worksheets(3).Range("P" & Worksheets(4).Range("J" & z).Value).Interior.Color = rgbSalmon
     
     End If
   Next z
@@ -810,56 +810,56 @@ Sub XDash()
 '----------------------------------------------------------------------------------------------
   'HFA
   'Hightlight Validation page with Green
-  For z = 1 To Worksheets(4).range("B3000").End(xlUp).Row
-    If Worksheets(4).range("B" & z).Interior.Color = rgbGreen Then
-      Worksheets(1).range("J" & Worksheets(4).range("A" & z).Value).Interior.Color = rgbGreen
-      Worksheets(1).range("A" & Worksheets(4).range("A" & z).Value).Interior.Color = rgbAqua
-      Worksheets(1).range("B" & Worksheets(4).range("A" & z).Value).Interior.Color = rgbAqua
-      Worksheets(1).range("C" & Worksheets(4).range("A" & z).Value).Interior.Color = rgbAqua
-      Worksheets(1).range("D" & Worksheets(4).range("A" & z).Value).Interior.Color = rgbAqua
-      Worksheets(1).range("E" & Worksheets(4).range("A" & z).Value).Interior.Color = rgbAqua
-      Worksheets(1).range("F" & Worksheets(4).range("A" & z).Value).Interior.Color = rgbAqua
+  For z = 1 To Worksheets(4).Range("B3000").End(xlUp).row
+    If Worksheets(4).Range("B" & z).Interior.Color = rgbGreen Then
+      Worksheets(1).Range("J" & Worksheets(4).Range("A" & z).Value).Interior.Color = rgbGreen
+      Worksheets(1).Range("A" & Worksheets(4).Range("A" & z).Value).Interior.Color = rgbAqua
+      Worksheets(1).Range("B" & Worksheets(4).Range("A" & z).Value).Interior.Color = rgbAqua
+      Worksheets(1).Range("C" & Worksheets(4).Range("A" & z).Value).Interior.Color = rgbAqua
+      Worksheets(1).Range("D" & Worksheets(4).Range("A" & z).Value).Interior.Color = rgbAqua
+      Worksheets(1).Range("E" & Worksheets(4).Range("A" & z).Value).Interior.Color = rgbAqua
+      Worksheets(1).Range("F" & Worksheets(4).Range("A" & z).Value).Interior.Color = rgbAqua
     End If
   Next z
   
   'Hightlight Validation page with Blue
-  For z = 1 To Worksheets(4).range("B3000").End(xlUp).Row
-    If Worksheets(4).range("B" & z).Interior.Color = RGB(102, 102, 204) Then
-      Worksheets(1).range("J" & Worksheets(4).range("A" & z).Value).Interior.Color = rgbSalmon
-      Worksheets(1).range("A" & Worksheets(4).range("A" & z).Value).Interior.Color = rgbAqua
-      Worksheets(1).range("B" & Worksheets(4).range("A" & z).Value).Interior.Color = rgbAqua
-      Worksheets(1).range("C" & Worksheets(4).range("A" & z).Value).Interior.Color = rgbAqua
-      Worksheets(1).range("D" & Worksheets(4).range("A" & z).Value).Interior.Color = rgbAqua
-      Worksheets(1).range("E" & Worksheets(4).range("A" & z).Value).Interior.Color = rgbAqua
-      Worksheets(1).range("F" & Worksheets(4).range("A" & z).Value).Interior.Color = rgbAqua
+  For z = 1 To Worksheets(4).Range("B3000").End(xlUp).row
+    If Worksheets(4).Range("B" & z).Interior.Color = RGB(102, 102, 204) Then
+      Worksheets(1).Range("J" & Worksheets(4).Range("A" & z).Value).Interior.Color = rgbSalmon
+      Worksheets(1).Range("A" & Worksheets(4).Range("A" & z).Value).Interior.Color = rgbAqua
+      Worksheets(1).Range("B" & Worksheets(4).Range("A" & z).Value).Interior.Color = rgbAqua
+      Worksheets(1).Range("C" & Worksheets(4).Range("A" & z).Value).Interior.Color = rgbAqua
+      Worksheets(1).Range("D" & Worksheets(4).Range("A" & z).Value).Interior.Color = rgbAqua
+      Worksheets(1).Range("E" & Worksheets(4).Range("A" & z).Value).Interior.Color = rgbAqua
+      Worksheets(1).Range("F" & Worksheets(4).Range("A" & z).Value).Interior.Color = rgbAqua
     End If
   Next z
   
   'Hightlight Validation page with Gold
-  For z = 1 To Worksheets(4).range("B3000").End(xlUp).Row
-    If Worksheets(4).range("B" & z).Interior.Color = rgbGold Then
-      Worksheets(1).range("A" & Worksheets(4).range("A" & z).Value).Interior.Color = rgbAqua
-      Worksheets(1).range("B" & Worksheets(4).range("A" & z).Value).Interior.Color = rgbAqua
-      Worksheets(1).range("C" & Worksheets(4).range("A" & z).Value).Interior.Color = rgbAqua
-      Worksheets(1).range("D" & Worksheets(4).range("A" & z).Value).Interior.Color = rgbAqua
-      Worksheets(1).range("E" & Worksheets(4).range("A" & z).Value).Interior.Color = rgbAqua
-      Worksheets(1).range("F" & Worksheets(4).range("A" & z).Value).Interior.Color = rgbSalmon
-      If Worksheets(1).range("D" & Worksheets(4).range("A" & z).Value).Interior.Color <> rgbGreen Then
-        Worksheets(1).range("J" & Worksheets(4).range("A" & z).Value).Interior.Color = rgbSalmon
+  For z = 1 To Worksheets(4).Range("B3000").End(xlUp).row
+    If Worksheets(4).Range("B" & z).Interior.Color = rgbGold Then
+      Worksheets(1).Range("A" & Worksheets(4).Range("A" & z).Value).Interior.Color = rgbAqua
+      Worksheets(1).Range("B" & Worksheets(4).Range("A" & z).Value).Interior.Color = rgbAqua
+      Worksheets(1).Range("C" & Worksheets(4).Range("A" & z).Value).Interior.Color = rgbAqua
+      Worksheets(1).Range("D" & Worksheets(4).Range("A" & z).Value).Interior.Color = rgbAqua
+      Worksheets(1).Range("E" & Worksheets(4).Range("A" & z).Value).Interior.Color = rgbAqua
+      Worksheets(1).Range("F" & Worksheets(4).Range("A" & z).Value).Interior.Color = rgbSalmon
+      If Worksheets(1).Range("D" & Worksheets(4).Range("A" & z).Value).Interior.Color <> rgbGreen Then
+        Worksheets(1).Range("J" & Worksheets(4).Range("A" & z).Value).Interior.Color = rgbSalmon
       End If
     End If
   Next z
   
   'Hightlight Validation page with Red
-  For z = 1 To Worksheets(4).range("B3000").End(xlUp).Row
-    If Worksheets(4).range("B" & z).Interior.Color = rgbRed Then
-      Worksheets(1).range("A" & Worksheets(4).range("A" & z).Value).Interior.Color = rgbSalmon
-      Worksheets(1).range("B" & Worksheets(4).range("A" & z).Value).Interior.Color = rgbSalmon
-      Worksheets(1).range("C" & Worksheets(4).range("A" & z).Value).Interior.Color = rgbSalmon
-      Worksheets(1).range("D" & Worksheets(4).range("A" & z).Value).Interior.Color = rgbSalmon
-      Worksheets(1).range("E" & Worksheets(4).range("A" & z).Value).Interior.Color = rgbSalmon
-      Worksheets(1).range("F" & Worksheets(4).range("A" & z).Value).Interior.Color = rgbSalmon
-      Worksheets(1).range("J" & Worksheets(4).range("A" & z).Value).Interior.Color = rgbSalmon
+  For z = 1 To Worksheets(4).Range("B3000").End(xlUp).row
+    If Worksheets(4).Range("B" & z).Interior.Color = rgbRed Then
+      Worksheets(1).Range("A" & Worksheets(4).Range("A" & z).Value).Interior.Color = rgbSalmon
+      Worksheets(1).Range("B" & Worksheets(4).Range("A" & z).Value).Interior.Color = rgbSalmon
+      Worksheets(1).Range("C" & Worksheets(4).Range("A" & z).Value).Interior.Color = rgbSalmon
+      Worksheets(1).Range("D" & Worksheets(4).Range("A" & z).Value).Interior.Color = rgbSalmon
+      Worksheets(1).Range("E" & Worksheets(4).Range("A" & z).Value).Interior.Color = rgbSalmon
+      Worksheets(1).Range("F" & Worksheets(4).Range("A" & z).Value).Interior.Color = rgbSalmon
+      Worksheets(1).Range("J" & Worksheets(4).Range("A" & z).Value).Interior.Color = rgbSalmon
     End If
   Next z
   
@@ -876,34 +876,34 @@ End Sub
   'Non-LI remaining parts
   'Check for Perfect Match Parts and Quantity
   'Oracle
-  For z = 2 To Worksheets(3).range("A3000").End(xlUp).Row
-    If Worksheets(3).range("C" & z).Interior.ColorIndex = xlNone Then
+  For z = 2 To Worksheets(3).Range("A3000").End(xlUp).row
+    If Worksheets(3).Range("C" & z).Interior.ColorIndex = xlNone Then
       'HFA
-      For y = 2 To Worksheets(1).range("A3000").End(xlUp).Row
-        If Worksheets(1).range("E" & y).Interior.ColorIndex = xlNone _
-        And InStr(1, Worksheets(3).range("C" & z).Value, Worksheets(1).range("E" & y).Value) <> 0 _
-        And InStr(1, Worksheets(3).range("P" & z).Value, Worksheets(1).range("F" & y).Value) <> 0 Then
+      For y = 2 To Worksheets(1).Range("A3000").End(xlUp).row
+        If Worksheets(1).Range("E" & y).Interior.ColorIndex = xlNone _
+        And InStr(1, Worksheets(3).Range("C" & z).Value, Worksheets(1).Range("E" & y).Value) <> 0 _
+        And InStr(1, Worksheets(3).Range("P" & z).Value, Worksheets(1).Range("F" & y).Value) <> 0 Then
         'Or InStr(1, Worksheets(1).Range("F" & y).Value, ".") <> 0) Then
-          Worksheets(3).range("A" & z).Interior.Color = rgbAqua
-          Worksheets(3).range("B" & z).Interior.Color = rgbAqua
-          Worksheets(3).range("C" & z).Interior.Color = rgbAqua
-          Worksheets(3).range("D" & z).Interior.Color = rgbAqua
+          Worksheets(3).Range("A" & z).Interior.Color = rgbAqua
+          Worksheets(3).Range("B" & z).Interior.Color = rgbAqua
+          Worksheets(3).Range("C" & z).Interior.Color = rgbAqua
+          Worksheets(3).Range("D" & z).Interior.Color = rgbAqua
           'If InStr(1, Worksheets(1).Range("F" & y).Value, ".") Then
             'Worksheets(3).Range("P" & z).Interior.Color = rgbGrey
           'Else
-            Worksheets(3).range("P" & z).Interior.Color = rgbAqua
+            Worksheets(3).Range("P" & z).Interior.Color = rgbAqua
           'End If
           
           'HFA
-          Worksheets(1).range("A" & y).Interior.Color = rgbAqua
-          Worksheets(1).range("B" & y).Interior.Color = rgbAqua
-          Worksheets(1).range("C" & y).Interior.Color = rgbAqua
-          Worksheets(1).range("D" & y).Interior.Color = rgbAqua
-          Worksheets(1).range("E" & y).Interior.Color = rgbAqua
+          Worksheets(1).Range("A" & y).Interior.Color = rgbAqua
+          Worksheets(1).Range("B" & y).Interior.Color = rgbAqua
+          Worksheets(1).Range("C" & y).Interior.Color = rgbAqua
+          Worksheets(1).Range("D" & y).Interior.Color = rgbAqua
+          Worksheets(1).Range("E" & y).Interior.Color = rgbAqua
           'If InStr(1, Worksheets(1).Range("F" & y).Value, ".") Then
             'Worksheets(1).Range("F" & y).Interior.Color = rgbGrey
           'Else
-            Worksheets(1).range("F" & y).Interior.Color = rgbAqua
+            Worksheets(1).Range("F" & y).Interior.Color = rgbAqua
           'End If
           Exit For
         End If
@@ -913,13 +913,13 @@ End Sub
   
   'HFA Flatten Remaining Parts
   'EA
-  For y = 2 To Worksheets(1).range("A3000").End(xlUp).Row
-    If Worksheets(1).range("C" & y).Interior.ColorIndex = xlNone _
-    And InStr(1, Worksheets(1).range("H" & y).Value, "EA") = 1 Then
-      For i = Worksheets(1).range("F" & y).Value To 1 Step -1
-        Worksheets(4).range("R" & finalFlatten).Value = y
-        Worksheets(4).range("S" & finalFlatten).Value = Worksheets(1).range("E" & y).Value
-        Worksheets(4).range("T" & finalFlatten).Value = Worksheets(1).range("F" & y).Value
+  For y = 2 To Worksheets(1).Range("A3000").End(xlUp).row
+    If Worksheets(1).Range("C" & y).Interior.ColorIndex = xlNone _
+    And InStr(1, Worksheets(1).Range("H" & y).Value, "EA") = 1 Then
+      For i = Worksheets(1).Range("F" & y).Value To 1 Step -1
+        Worksheets(4).Range("R" & finalFlatten).Value = y
+        Worksheets(4).Range("S" & finalFlatten).Value = Worksheets(1).Range("E" & y).Value
+        Worksheets(4).Range("T" & finalFlatten).Value = Worksheets(1).Range("F" & y).Value
         finalFlatten = finalFlatten + 1
       Next i
     End If
@@ -928,29 +928,29 @@ End Sub
   'Oracle Flatten Remaining Parts
   'EA
   finalFlatten = 1
-  For y = 2 To Worksheets(3).range("A3000").End(xlUp).Row
-    If Worksheets(3).range("A" & y).Interior.ColorIndex = xlNone _
-    And InStr(1, Worksheets(3).range("N" & y).Value, "EA") = 1 Then
-      For i = Worksheets(3).range("P" & y).Value To 1 Step -1
-        Worksheets(4).range("X" & finalFlatten).Value = y
-        Worksheets(4).range("Y" & finalFlatten).Value = Worksheets(3).range("C" & y).Value
-        Worksheets(4).range("Z" & finalFlatten).Value = Worksheets(3).range("P" & y).Value
+  For y = 2 To Worksheets(3).Range("A3000").End(xlUp).row
+    If Worksheets(3).Range("A" & y).Interior.ColorIndex = xlNone _
+    And InStr(1, Worksheets(3).Range("N" & y).Value, "EA") = 1 Then
+      For i = Worksheets(3).Range("P" & y).Value To 1 Step -1
+        Worksheets(4).Range("X" & finalFlatten).Value = y
+        Worksheets(4).Range("Y" & finalFlatten).Value = Worksheets(3).Range("C" & y).Value
+        Worksheets(4).Range("Z" & finalFlatten).Value = Worksheets(3).Range("P" & y).Value
         finalFlatten = finalFlatten + 1
       Next i
     End If
   Next y
   
   'Sort Oracle list A-Z
-  Worksheets(4).range("X1:Z100").Sort Key1:=range("Y1"), Order1:=xlAscending, Header:=xlGuess, OrderCustom:=1, MatchCase:=False, Orientation:=xlTopToBottom, DataOption1:=xlSortNormal
+  Worksheets(4).Range("X1:Z100").Sort Key1:=Range("Y1"), Order1:=xlAscending, Header:=xlGuess, OrderCustom:=1, MatchCase:=False, Orientation:=xlTopToBottom, DataOption1:=xlSortNormal
      
   'Oracle compare to HFA
-  For y = 1 To Worksheets(4).range("Y3000").End(xlUp).Row
-    For z = 1 To Worksheets(4).range("S3000").End(xlUp).Row
-      If InStr(Worksheets(4).range("Y" & y).Value, Worksheets(4).range("S" & z).Value) <> 0 _
-      And Worksheets(4).range("Y" & y).Interior.Color <> rgbOrange _
-      And Worksheets(4).range("S" & z).Interior.Color <> rgbOrange Then
-        Worksheets(4).range("Y" & y).Interior.Color = rgbOrange
-        Worksheets(4).range("S" & z).Interior.Color = rgbOrange
+  For y = 1 To Worksheets(4).Range("Y3000").End(xlUp).row
+    For z = 1 To Worksheets(4).Range("S3000").End(xlUp).row
+      If InStr(Worksheets(4).Range("Y" & y).Value, Worksheets(4).Range("S" & z).Value) <> 0 _
+      And Worksheets(4).Range("Y" & y).Interior.Color <> rgbOrange _
+      And Worksheets(4).Range("S" & z).Interior.Color <> rgbOrange Then
+        Worksheets(4).Range("Y" & y).Interior.Color = rgbOrange
+        Worksheets(4).Range("S" & z).Interior.Color = rgbOrange
         Exit For
       End If
     Next z
@@ -959,37 +959,37 @@ End Sub
   'Loop through lines on HFA and Oracle side to mark the hits and non-hits
   'Since lines are in order, if a line ID is only half valid, it will simply turn the validation or HFA sheet red
   'Oracle
-  For y = 1 To Worksheets(4).range("Y3000").End(xlUp).Row
-    If Worksheets(4).range("Y" & y).Interior.Color = rgbOrange Then
-      Worksheets(3).range("A" & Worksheets(4).range("X" & y).Value).Interior.Color = rgbAqua
-      Worksheets(3).range("B" & Worksheets(4).range("X" & y).Value).Interior.Color = rgbAqua
-      Worksheets(3).range("C" & Worksheets(4).range("X" & y).Value).Interior.Color = rgbAqua
-      Worksheets(3).range("D" & Worksheets(4).range("X" & y).Value).Interior.Color = rgbAqua
-      Worksheets(3).range("P" & Worksheets(4).range("X" & y).Value).Interior.Color = rgbAqua
-    ElseIf Worksheets(4).range("Y" & y).Value <> "" Then
-      Worksheets(3).range("A" & Worksheets(4).range("X" & y).Value).Interior.Color = rgbSalmon
-      Worksheets(3).range("B" & Worksheets(4).range("X" & y).Value).Interior.Color = rgbSalmon
-      Worksheets(3).range("C" & Worksheets(4).range("X" & y).Value).Interior.Color = rgbSalmon
-      Worksheets(3).range("D" & Worksheets(4).range("X" & y).Value).Interior.Color = rgbSalmon
-      Worksheets(3).range("P" & Worksheets(4).range("X" & y).Value).Interior.Color = rgbSalmon
+  For y = 1 To Worksheets(4).Range("Y3000").End(xlUp).row
+    If Worksheets(4).Range("Y" & y).Interior.Color = rgbOrange Then
+      Worksheets(3).Range("A" & Worksheets(4).Range("X" & y).Value).Interior.Color = rgbAqua
+      Worksheets(3).Range("B" & Worksheets(4).Range("X" & y).Value).Interior.Color = rgbAqua
+      Worksheets(3).Range("C" & Worksheets(4).Range("X" & y).Value).Interior.Color = rgbAqua
+      Worksheets(3).Range("D" & Worksheets(4).Range("X" & y).Value).Interior.Color = rgbAqua
+      Worksheets(3).Range("P" & Worksheets(4).Range("X" & y).Value).Interior.Color = rgbAqua
+    ElseIf Worksheets(4).Range("Y" & y).Value <> "" Then
+      Worksheets(3).Range("A" & Worksheets(4).Range("X" & y).Value).Interior.Color = rgbSalmon
+      Worksheets(3).Range("B" & Worksheets(4).Range("X" & y).Value).Interior.Color = rgbSalmon
+      Worksheets(3).Range("C" & Worksheets(4).Range("X" & y).Value).Interior.Color = rgbSalmon
+      Worksheets(3).Range("D" & Worksheets(4).Range("X" & y).Value).Interior.Color = rgbSalmon
+      Worksheets(3).Range("P" & Worksheets(4).Range("X" & y).Value).Interior.Color = rgbSalmon
     End If
   Next y
   
-  For y = 1 To Worksheets(4).range("S3000").End(xlUp).Row
-    If Worksheets(4).range("S" & y).Interior.Color = rgbOrange Then
-      Worksheets(1).range("A" & Worksheets(4).range("R" & y).Value).Interior.Color = rgbAqua
-      Worksheets(1).range("B" & Worksheets(4).range("R" & y).Value).Interior.Color = rgbAqua
-      Worksheets(1).range("C" & Worksheets(4).range("R" & y).Value).Interior.Color = rgbAqua
-      Worksheets(1).range("D" & Worksheets(4).range("R" & y).Value).Interior.Color = rgbAqua
-      Worksheets(1).range("E" & Worksheets(4).range("R" & y).Value).Interior.Color = rgbAqua
-      Worksheets(1).range("F" & Worksheets(4).range("R" & y).Value).Interior.Color = rgbAqua
-    ElseIf Worksheets(4).range("S" & y).Value <> "" Then
-      Worksheets(1).range("A" & Worksheets(4).range("R" & y).Value).Interior.Color = rgbSalmon
-      Worksheets(1).range("B" & Worksheets(4).range("R" & y).Value).Interior.Color = rgbSalmon
-      Worksheets(1).range("C" & Worksheets(4).range("R" & y).Value).Interior.Color = rgbSalmon
-      Worksheets(1).range("D" & Worksheets(4).range("R" & y).Value).Interior.Color = rgbSalmon
-      Worksheets(1).range("E" & Worksheets(4).range("R" & y).Value).Interior.Color = rgbSalmon
-      Worksheets(1).range("F" & Worksheets(4).range("R" & y).Value).Interior.Color = rgbSalmon
+  For y = 1 To Worksheets(4).Range("S3000").End(xlUp).row
+    If Worksheets(4).Range("S" & y).Interior.Color = rgbOrange Then
+      Worksheets(1).Range("A" & Worksheets(4).Range("R" & y).Value).Interior.Color = rgbAqua
+      Worksheets(1).Range("B" & Worksheets(4).Range("R" & y).Value).Interior.Color = rgbAqua
+      Worksheets(1).Range("C" & Worksheets(4).Range("R" & y).Value).Interior.Color = rgbAqua
+      Worksheets(1).Range("D" & Worksheets(4).Range("R" & y).Value).Interior.Color = rgbAqua
+      Worksheets(1).Range("E" & Worksheets(4).Range("R" & y).Value).Interior.Color = rgbAqua
+      Worksheets(1).Range("F" & Worksheets(4).Range("R" & y).Value).Interior.Color = rgbAqua
+    ElseIf Worksheets(4).Range("S" & y).Value <> "" Then
+      Worksheets(1).Range("A" & Worksheets(4).Range("R" & y).Value).Interior.Color = rgbSalmon
+      Worksheets(1).Range("B" & Worksheets(4).Range("R" & y).Value).Interior.Color = rgbSalmon
+      Worksheets(1).Range("C" & Worksheets(4).Range("R" & y).Value).Interior.Color = rgbSalmon
+      Worksheets(1).Range("D" & Worksheets(4).Range("R" & y).Value).Interior.Color = rgbSalmon
+      Worksheets(1).Range("E" & Worksheets(4).Range("R" & y).Value).Interior.Color = rgbSalmon
+      Worksheets(1).Range("F" & Worksheets(4).Range("R" & y).Value).Interior.Color = rgbSalmon
     End If
   Next y
   
@@ -997,25 +997,25 @@ End Sub
   'This will pick up any Decimal Values missed aka lineals
   '1/16th tolerance
   'HFA
-  For y = 2 To Worksheets(1).range("A3000").End(xlUp).Row
-    If Worksheets(1).range("E" & y).Interior.Color = rgbSalmon Then
+  For y = 2 To Worksheets(1).Range("A3000").End(xlUp).row
+    If Worksheets(1).Range("E" & y).Interior.Color = rgbSalmon Then
       'ORACLE
-      For z = 2 To Worksheets(3).range("A3000").End(xlUp).Row
-        If Worksheets(3).range("A" & z).Interior.Color = rgbGrey _
-        And InStr(1, Worksheets(3).range("C" & z).Value, Worksheets(1).range("E" & y).Value) _
-        And Worksheets(3).range("P" & z).Value >= (Worksheets(1).range("F" & y).Value - 0.0625) _
-        And Worksheets(3).range("P" & z).Value <= (Worksheets(1).range("F" & y).Value + 0.0625) Then
-          Worksheets(1).range("A" & y).Interior.Color = rgbAqua
-          Worksheets(1).range("B" & y).Interior.Color = rgbAqua
-          Worksheets(1).range("C" & y).Interior.Color = rgbAqua
-          Worksheets(1).range("D" & y).Interior.Color = rgbAqua
-          Worksheets(1).range("E" & y).Interior.Color = rgbAqua
-          Worksheets(1).range("F" & y).Interior.Color = rgbAqua
-          Worksheets(3).range("A" & z).Interior.Color = rgbAqua
-          Worksheets(3).range("B" & z).Interior.Color = rgbAqua
-          Worksheets(3).range("C" & z).Interior.Color = rgbAqua
-          Worksheets(3).range("D" & z).Interior.Color = rgbAqua
-          Worksheets(3).range("P" & z).Interior.Color = rgbAqua
+      For z = 2 To Worksheets(3).Range("A3000").End(xlUp).row
+        If Worksheets(3).Range("A" & z).Interior.Color = rgbGrey _
+        And InStr(1, Worksheets(3).Range("C" & z).Value, Worksheets(1).Range("E" & y).Value) _
+        And Worksheets(3).Range("P" & z).Value >= (Worksheets(1).Range("F" & y).Value - 0.0625) _
+        And Worksheets(3).Range("P" & z).Value <= (Worksheets(1).Range("F" & y).Value + 0.0625) Then
+          Worksheets(1).Range("A" & y).Interior.Color = rgbAqua
+          Worksheets(1).Range("B" & y).Interior.Color = rgbAqua
+          Worksheets(1).Range("C" & y).Interior.Color = rgbAqua
+          Worksheets(1).Range("D" & y).Interior.Color = rgbAqua
+          Worksheets(1).Range("E" & y).Interior.Color = rgbAqua
+          Worksheets(1).Range("F" & y).Interior.Color = rgbAqua
+          Worksheets(3).Range("A" & z).Interior.Color = rgbAqua
+          Worksheets(3).Range("B" & z).Interior.Color = rgbAqua
+          Worksheets(3).Range("C" & z).Interior.Color = rgbAqua
+          Worksheets(3).Range("D" & z).Interior.Color = rgbAqua
+          Worksheets(3).Range("P" & z).Interior.Color = rgbAqua
           Exit For
         End If
       Next z
@@ -1023,34 +1023,34 @@ End Sub
   Next y
   
   'Highlight the Unmatched Red in Oracle
-  For y = 2 To Worksheets(3).range("A3000").End(xlUp).Row
-    If Worksheets(3).range("A" & y).Interior.ColorIndex = xlNone Then
-      Worksheets(3).range("A" & y).Interior.Color = rgbSalmon
-      Worksheets(3).range("B" & y).Interior.Color = rgbSalmon
-      Worksheets(3).range("C" & y).Interior.Color = rgbSalmon
-      Worksheets(3).range("D" & y).Interior.Color = rgbSalmon
-      Worksheets(3).range("P" & y).Interior.Color = rgbSalmon
+  For y = 2 To Worksheets(3).Range("A3000").End(xlUp).row
+    If Worksheets(3).Range("A" & y).Interior.ColorIndex = xlNone Then
+      Worksheets(3).Range("A" & y).Interior.Color = rgbSalmon
+      Worksheets(3).Range("B" & y).Interior.Color = rgbSalmon
+      Worksheets(3).Range("C" & y).Interior.Color = rgbSalmon
+      Worksheets(3).Range("D" & y).Interior.Color = rgbSalmon
+      Worksheets(3).Range("P" & y).Interior.Color = rgbSalmon
     End If
   Next y
   
   'Highlight the Unmatched Red in HFA
-  For y = 2 To Worksheets(1).range("A3000").End(xlUp).Row
-    If Worksheets(1).range("A" & y).Interior.ColorIndex = xlNone Then
-      Worksheets(1).range("A" & y).Interior.Color = rgbSalmon
-      Worksheets(1).range("B" & y).Interior.Color = rgbSalmon
-      Worksheets(1).range("C" & y).Interior.Color = rgbSalmon
-      Worksheets(1).range("D" & y).Interior.Color = rgbSalmon
-      Worksheets(1).range("E" & y).Interior.Color = rgbSalmon
-      Worksheets(1).range("F" & y).Interior.Color = rgbSalmon
+  For y = 2 To Worksheets(1).Range("A3000").End(xlUp).row
+    If Worksheets(1).Range("A" & y).Interior.ColorIndex = xlNone Then
+      Worksheets(1).Range("A" & y).Interior.Color = rgbSalmon
+      Worksheets(1).Range("B" & y).Interior.Color = rgbSalmon
+      Worksheets(1).Range("C" & y).Interior.Color = rgbSalmon
+      Worksheets(1).Range("D" & y).Interior.Color = rgbSalmon
+      Worksheets(1).Range("E" & y).Interior.Color = rgbSalmon
+      Worksheets(1).Range("F" & y).Interior.Color = rgbSalmon
     End If
   Next y
   
   'Highlight Grid Descriptions in Oracle - Informational
-  For j = 2 To Worksheets(3).range("A3000").End(xlUp).Row
-    If InStr(Worksheets(3).range("D" & j), "GRD") <> 0 _
-    Or InStr(Worksheets(3).range("D" & j), "GRID") <> 0 _
-    Or InStr(Worksheets(3).range("D" & j), "MUNTIN") <> 0 Then
-      Worksheets(3).range("D" & j).Interior.Color = RGB(102, 102, 204)
+  For j = 2 To Worksheets(3).Range("A3000").End(xlUp).row
+    If InStr(Worksheets(3).Range("D" & j), "GRD") <> 0 _
+    Or InStr(Worksheets(3).Range("D" & j), "GRID") <> 0 _
+    Or InStr(Worksheets(3).Range("D" & j), "MUNTIN") <> 0 Then
+      Worksheets(3).Range("D" & j).Interior.Color = RGB(102, 102, 204)
     End If
   Next j
   
@@ -1087,6 +1087,12 @@ End Sub
 Sub C3POIsTheBest()
 
 Application.ScreenUpdating = False
+Application.DisplayStatusBar = False
+Application.EnableEvents = False
+calcState = Application.Calculation
+Application.Calculation = xlCalculationManual
+eventsState = Application.EnableEvents
+Application.EnableEvents = False
 
 Dim startOracle As Single
 Dim endOracle As Single
@@ -1108,10 +1114,19 @@ Call DoBomsMatch
 
 'uncomment to reformat (expand the columns)
 Call ReFormat
+'endOracle = Timer()
+
+'save file automatically
+Call SaveBomAfterC3POLightForce
 
 Application.ScreenUpdating = True
+Application.DisplayStatusBar = True
+Application.EnableEvents = True
+Application.Calculation = calcState
+Application.EnableEvents = eventsState
 
 'MsgBox ("Time taken to run Oracle code:" & endOracle - startOracle & " seconds" & vbNewLine & "Time taken to run HFA code: " & endHfa - startHfa & " seconds")
+'MsgBox ("Time taken to run C3PO code:" & endOracle - startOracle & " seconds")
 
 
 End Sub
@@ -1129,40 +1144,40 @@ Dim cnt As Long
 cnt = 6
 Dim LastCol As Long
 'LastCol = (Cells(Rows.Count, i).End(xlUp).Row) + 1
-LastCol = (Worksheets(1).range("A500").End(xlUp).Row) + 1
+LastCol = (Worksheets(1).Range("A500").End(xlUp).row) + 1
 Debug.Print "length: "; LastCol
 
 'Worksheets("Sheet1").Range("A1:D1").Copy Worksheets("Sheet2").Range("A1:D1")
 'set the table headings
-Worksheets("Validation").range("BJ4").Value = "Missing from Oracle"
-Worksheets(1).range("E1").Copy Worksheets("Validation").range("BJ5")
-Worksheets(1).range("F1").Copy Worksheets("Validation").range("BK5")
-Worksheets(1).range("J1").Copy Worksheets("Validation").range("BL5")
-Worksheets(1).range("K1").Copy Worksheets("Validation").range("BM5")
+Worksheets("Validation").Range("BJ4").Value = "Missing from Oracle"
+Worksheets(1).Range("E1").Copy Worksheets("Validation").Range("BJ5")
+Worksheets(1).Range("F1").Copy Worksheets("Validation").Range("BK5")
+Worksheets(1).Range("J1").Copy Worksheets("Validation").Range("BL5")
+Worksheets(1).Range("K1").Copy Worksheets("Validation").Range("BM5")
 
 'check to see if cell is red, if so then copy that cell over to the other sheet
 Do Until i = LastCol
-    If ws.range("E" & i).Interior.Color = RGB(250, 128, 114) Or ws.range("F" & i).Interior.Color = RGB(250, 128, 114) Or ws.range("J" & i).Interior.Color = RGB(250, 128, 114) Or ws.range("K" & i).Interior.Color = RGB(250, 128, 114) Then
-    If ws.range("E" & i).Interior.Color = RGB(250, 128, 114) Then
-        ws.range("E" & i).Copy Worksheets("Validation").range("BJ" & cnt)
+    If ws.Range("E" & i).Interior.Color = RGB(250, 128, 114) Or ws.Range("F" & i).Interior.Color = RGB(250, 128, 114) Or ws.Range("J" & i).Interior.Color = RGB(250, 128, 114) Or ws.Range("K" & i).Interior.Color = RGB(250, 128, 114) Then
+    If ws.Range("E" & i).Interior.Color = RGB(250, 128, 114) Then
+        ws.Range("E" & i).Copy Worksheets("Validation").Range("BJ" & cnt)
     End If
-    If ws.range("F" & i).Interior.Color = RGB(250, 128, 114) Then
-        If Not ws.range("E" & i).Interior.Color = RGB(250, 128, 114) Then
-            ws.range("E" & i).Copy Worksheets("Validation").range("BJ" & cnt)
+    If ws.Range("F" & i).Interior.Color = RGB(250, 128, 114) Then
+        If Not ws.Range("E" & i).Interior.Color = RGB(250, 128, 114) Then
+            ws.Range("E" & i).Copy Worksheets("Validation").Range("BJ" & cnt)
         End If
-        ws.range("F" & i).Copy Worksheets("Validation").range("BK" & cnt)
+        ws.Range("F" & i).Copy Worksheets("Validation").Range("BK" & cnt)
     End If
-    If ws.range("J" & i).Interior.Color = RGB(250, 128, 114) Then
-        If Not ws.range("E" & i).Interior.Color = RGB(250, 128, 114) Then
-            ws.range("E" & i).Copy Worksheets("Validation").range("BJ" & cnt)
+    If ws.Range("J" & i).Interior.Color = RGB(250, 128, 114) Then
+        If Not ws.Range("E" & i).Interior.Color = RGB(250, 128, 114) Then
+            ws.Range("E" & i).Copy Worksheets("Validation").Range("BJ" & cnt)
         End If
-        ws.range("J" & i).Copy Worksheets("Validation").range("BL" & cnt)
+        ws.Range("J" & i).Copy Worksheets("Validation").Range("BL" & cnt)
     End If
-    If ws.range("K" & i).Interior.Color = RGB(250, 128, 114) Then
-        If Not ws.range("E" & i).Interior.Color = RGB(250, 128, 114) Then
-            ws.range("E" & i).Copy Worksheets("Validation").range("BJ" & cnt)
+    If ws.Range("K" & i).Interior.Color = RGB(250, 128, 114) Then
+        If Not ws.Range("E" & i).Interior.Color = RGB(250, 128, 114) Then
+            ws.Range("E" & i).Copy Worksheets("Validation").Range("BJ" & cnt)
         End If
-        ws.range("K" & i).Copy Worksheets("Validation").range("BM" & cnt)
+        ws.Range("K" & i).Copy Worksheets("Validation").Range("BM" & cnt)
     End If
     cnt = cnt + 1
     End If
@@ -1187,53 +1202,53 @@ Dim cnt As Long
 cnt = 6
 Dim LastCol As Long
 'LastCol = (Cells(Rows.Count, i).End(xlUp).Row) + 1
-LastCol = (Worksheets(3).range("A3000").End(xlUp).Row) + 1
+LastCol = (Worksheets(3).Range("A3000").End(xlUp).row) + 1
 Debug.Print "length: "; LastCol
 
 'Worksheets("Sheet1").Range("A1:D1").Copy Worksheets("Sheet2").Range("A1:D1")
 'set the table headings
-Worksheets("Validation").range("BO4").Value = "Missing from HFA"
-Worksheets(3).range("C1").Copy Worksheets("Validation").range("BO5")
-Worksheets(3).range("D1").Copy Worksheets("Validation").range("BP5")
-Worksheets(3).range("P1").Copy Worksheets("Validation").range("BQ5")
-Worksheets(3).range("Q1").Copy Worksheets("Validation").range("BR5")
+Worksheets("Validation").Range("BO4").Value = "Missing from HFA"
+Worksheets(3).Range("C1").Copy Worksheets("Validation").Range("BO5")
+Worksheets(3).Range("D1").Copy Worksheets("Validation").Range("BP5")
+Worksheets(3).Range("P1").Copy Worksheets("Validation").Range("BQ5")
+Worksheets(3).Range("Q1").Copy Worksheets("Validation").Range("BR5")
 
 'check to see if cell is red, if so then copy that cell over to the other sheet
 Do Until i = LastCol
-    If ws.range("C" & i).Interior.Color = RGB(250, 128, 114) Or ws.range("D" & i).Interior.Color = RGB(250, 128, 114) Or ws.range("P" & i).Interior.Color = RGB(250, 128, 114) Or ws.range("Q" & i).Interior.Color = RGB(250, 128, 114) Then
-    If ws.range("C" & i).Interior.Color = RGB(250, 128, 114) Then
+    If ws.Range("C" & i).Interior.Color = RGB(250, 128, 114) Or ws.Range("D" & i).Interior.Color = RGB(250, 128, 114) Or ws.Range("P" & i).Interior.Color = RGB(250, 128, 114) Or ws.Range("Q" & i).Interior.Color = RGB(250, 128, 114) Then
+    If ws.Range("C" & i).Interior.Color = RGB(250, 128, 114) Then
         'ws.Range("C" & i).Copy Range("BO" & cnt)
-        ws.range("C" & i).Copy Worksheets("Validation").range("BO" & cnt)
+        ws.Range("C" & i).Copy Worksheets("Validation").Range("BO" & cnt)
         'ws.Range("C" & i).Value = Range("BO" & cnt).Value
     End If
-    If ws.range("D" & i).Interior.Color = RGB(250, 128, 114) Then
-        If Not ws.range("C" & i).Interior.Color = RGB(250, 128, 114) Then
+    If ws.Range("D" & i).Interior.Color = RGB(250, 128, 114) Then
+        If Not ws.Range("C" & i).Interior.Color = RGB(250, 128, 114) Then
             'ws.Range("C" & i).Copy Range("BO" & cnt)
-            ws.range("C" & i).Copy Worksheets("Validation").range("BO" & cnt)
+            ws.Range("C" & i).Copy Worksheets("Validation").Range("BO" & cnt)
             'ws.Range("C" & i).Value = Range("BO" & cnt).Value
         End If
         'ws.Range("D" & i).Copy Range("BP" & cnt)
-         ws.range("D" & i).Copy Worksheets("Validation").range("BP" & cnt)
+         ws.Range("D" & i).Copy Worksheets("Validation").Range("BP" & cnt)
         'ws.Range("D" & i).Value = Range("BP" & cnt).Value
     End If
-    If ws.range("P" & i).Interior.Color = RGB(250, 128, 114) Then
-        If Not ws.range("C" & i).Interior.Color = RGB(250, 128, 114) Then
+    If ws.Range("P" & i).Interior.Color = RGB(250, 128, 114) Then
+        If Not ws.Range("C" & i).Interior.Color = RGB(250, 128, 114) Then
             'ws.Range("C" & i).Copy Range("BO" & cnt)
-            ws.range("C" & i).Copy Worksheets("Validation").range("BO" & cnt)
+            ws.Range("C" & i).Copy Worksheets("Validation").Range("BO" & cnt)
             'ws.Range("C" & i).Value = Range("BO" & cnt).Value
         End If
         'ws.Range("p" & i).Copy Range("BQ" & cnt)
-        ws.range("P" & i).Copy Worksheets("Validation").range("BQ" & cnt)
+        ws.Range("P" & i).Copy Worksheets("Validation").Range("BQ" & cnt)
         'ws.Range("P" & i).Value = Range("BQ" & cnt).Value
     End If
-    If ws.range("Q" & i).Interior.Color = RGB(250, 128, 114) Then
-        If Not ws.range("C" & i).Interior.Color = RGB(250, 128, 114) Then
+    If ws.Range("Q" & i).Interior.Color = RGB(250, 128, 114) Then
+        If Not ws.Range("C" & i).Interior.Color = RGB(250, 128, 114) Then
             'ws.Range("C" & i).Copy Range("BO" & cnt)
-            ws.range("C" & i).Copy Worksheets("Validation").range("BR" & cnt)
+            ws.Range("C" & i).Copy Worksheets("Validation").Range("BR" & cnt)
             'ws.Range("C" & i).Value = Range("BO" & cnt).Value
         End If
         'ws.Range("Q" & i).Copy Range("BR" & cnt)
-        ws.range("Q" & i).Copy Worksheets("Validation").range("BR" & cnt)
+        ws.Range("Q" & i).Copy Worksheets("Validation").Range("BR" & cnt)
         'ws.Range("Q" & i).Value = Range("BR" & cnt).Value
     End If
     cnt = cnt + 1
@@ -1259,25 +1274,25 @@ Sub DoBomsMatch()
 
 Dim item As Variant
 
-For Each item In Worksheets(1).range("A2:R3000").Cells
+For Each item In Worksheets(1).Range("A2:R3000").Cells
     If item.Interior.Color = RGB(250, 128, 114) Then
-        Worksheets("Validation").range("BJ1").Value = "ERRORS in HFA BOM"
-        Worksheets("Validation").range("BJ1").Interior.Color = RGB(255, 0, 0)
+        Worksheets("Validation").Range("BJ1").Value = "ERRORS in HFA BOM"
+        Worksheets("Validation").Range("BJ1").Interior.Color = RGB(255, 0, 0)
         Exit For
     Else
-        Worksheets("Validation").range("BJ1").Value = "NO Errors in HFA BOM"
-        Worksheets("Validation").range("BJ1").Interior.Color = RGB(0, 255, 0)
+        Worksheets("Validation").Range("BJ1").Value = "NO Errors in HFA BOM"
+        Worksheets("Validation").Range("BJ1").Interior.Color = RGB(0, 255, 0)
     End If
 Next
 
-For Each item In Worksheets(3).range("A2:BG3000").Cells
+For Each item In Worksheets(3).Range("A2:BG3000").Cells
     If item.Interior.Color = RGB(250, 128, 114) Then
-        Worksheets("Validation").range("BO1").Value = "ERRORS in Oracle BOM"
-        Worksheets("Validation").range("BO1").Interior.Color = RGB(255, 0, 0)
+        Worksheets("Validation").Range("BO1").Value = "ERRORS in Oracle BOM"
+        Worksheets("Validation").Range("BO1").Interior.Color = RGB(255, 0, 0)
         Exit For
     Else
-        Worksheets("Validation").range("BO1").Value = "NO Errors in Oracle BOM"
-        Worksheets("Validation").range("BO1").Interior.Color = RGB(0, 255, 0)
+        Worksheets("Validation").Range("BO1").Value = "NO Errors in Oracle BOM"
+        Worksheets("Validation").Range("BO1").Interior.Color = RGB(0, 255, 0)
     End If
 Next
 
@@ -1454,22 +1469,22 @@ copyRangeStrIgu = "BU" & StartRow & ":" & "BU" & LastRow
 
 Dim copyRangeStrWidth As String
 StartRow1 = 1
-LastRow1 = UBound(strWidth)
-LastRow1 = LastRow1 + 1
-copyRangeStrWidth = "BV" & StartRow1 & ":" & "BV" & LastRow1
+lastRow1 = UBound(strWidth)
+lastRow1 = lastRow1 + 1
+copyRangeStrWidth = "BV" & StartRow1 & ":" & "BV" & lastRow1
 
 Dim copyRangeStrHeight As String
 StartRow2 = 1
-LastRow2 = UBound(strHeight)
-LastRow2 = LastRow2 + 1
-copyRangeStrHeight = "BW" & StartRow2 & ":" & "BW" & LastRow2
+lastRow2 = UBound(strHeight)
+lastRow2 = lastRow2 + 1
+copyRangeStrHeight = "BW" & StartRow2 & ":" & "BW" & lastRow2
 
 '"BU6:BU11"
-Sheets(3).range(copyRangeStrIgu).Value = Application.Transpose(strIgu)
+Sheets(3).Range(copyRangeStrIgu).Value = Application.Transpose(strIgu)
 'Sheets(3).range("BU2").Resize((UBound(strIgu) - LBound(strIgu)) + 1, 1).Value = Application.Transpose(strIgu)
-Sheets(3).range(copyRangeStrWidth).Value = Application.Transpose(strWidth)
+Sheets(3).Range(copyRangeStrWidth).Value = Application.Transpose(strWidth)
 'Sheets(3).range("BV2").Resize((UBound(strWidth) - LBound(strWidth)) + 1, 1).Value = Application.Transpose(strWidth)
-Sheets(3).range(copyRangeStrHeight).Value = Application.Transpose(strHeight)
+Sheets(3).Range(copyRangeStrHeight).Value = Application.Transpose(strHeight)
 'Sheets(3).range("BW2").Resize((UBound(strHeight) - LBound(strHeight)) + 1, 1).Value = Application.Transpose(strHeight)
 
 Dim copyRangePartNumber As String
@@ -1491,11 +1506,11 @@ LastRow5 = LastRow5 + 1
 copyRangeHeight = "CC" & StartRow5 & ":" & "CC" & LastRow5
 
 'Sheets(3).range(copyRangePartNumber).Value = Application.Transpose(arrPartNumber)
-Sheets(3).range("CA2").Resize((UBound(arrPartNumber) - LBound(arrPartNumber)) + 1, 1).Value = Application.Transpose(arrPartNumber)
+Sheets(3).Range("CA2").Resize((UBound(arrPartNumber) - LBound(arrPartNumber)) + 1, 1).Value = Application.Transpose(arrPartNumber)
 'Sheets(3).range(copyRangeWidth).Value = Application.Transpose(arrWidth)
-Sheets(3).range("CB2").Resize((UBound(arrWidth) - LBound(arrWidth)) + 1, 1).Value = Application.Transpose(arrWidth)
+Sheets(3).Range("CB2").Resize((UBound(arrWidth) - LBound(arrWidth)) + 1, 1).Value = Application.Transpose(arrWidth)
 'Sheets(3).range(copyRangeHeight).Value = Application.Transpose(arrHeight)
-Sheets(3).range("CC2").Resize((UBound(arrHeight) - LBound(arrHeight)) + 1, 1).Value = Application.Transpose(arrHeight)
+Sheets(3).Range("CC2").Resize((UBound(arrHeight) - LBound(arrHeight)) + 1, 1).Value = Application.Transpose(arrHeight)
 
 'print values to validation sheeet
 Dim s1 As String, s2 As String, s3 As String, s4 As String, s5 As String, s6 As String, s7 As String, s8 As String, s9 As String, s10 As String
@@ -1512,25 +1527,25 @@ s7 = "BZ" & r2
 s8 = "CA" & r2
 s9 = "CB" & r2
 s10 = "CC" & r2
-Worksheets("Validation").range(s1).Value = "Oracle" '+ vbNewLine + "Values for IGU parts"
-Worksheets("Validation").range(s1).Interior.Color = rgbYellow
-Worksheets("Validation").range(s2).Value = "IGU Part Number"
-Worksheets("Validation").range(s2).Interior.Color = rgbYellow
-Worksheets("Validation").range(s3).Value = "IGU Width"
-Worksheets("Validation").range(s3).Interior.Color = rgbYellow
-Worksheets("Validation").range(s4).Value = "IGU Height"
-Worksheets("Validation").range(s4).Interior.Color = rgbYellow
+Worksheets("Validation").Range(s1).Value = "Oracle" '+ vbNewLine + "Values for IGU parts"
+Worksheets("Validation").Range(s1).Interior.Color = rgbYellow
+Worksheets("Validation").Range(s2).Value = "IGU Part Number"
+Worksheets("Validation").Range(s2).Interior.Color = rgbYellow
+Worksheets("Validation").Range(s3).Value = "IGU Width"
+Worksheets("Validation").Range(s3).Interior.Color = rgbYellow
+Worksheets("Validation").Range(s4).Value = "IGU Height"
+Worksheets("Validation").Range(s4).Interior.Color = rgbYellow
 'Worksheets("Validation").range(s5).Value = "Matching Dimensions"     'green for yes, red for no
 'Worksheets("Validation").range(s6).Value = "Off by (tolerance max up to 1/16 or 0.0625)"
 
-Worksheets("Validation").range("BZ1").Value = "HFA" '+ vbNewLine + "Values for glass parts"
-Worksheets("Validation").range("BZ1").Interior.Color = rgbYellow
-Worksheets("Validation").range("CA1").Value = "Part Number"
-Worksheets("Validation").range("CA1").Interior.Color = rgbYellow
-Worksheets("Validation").range("CB1").Value = "Width"
-Worksheets("Validation").range("CB1").Interior.Color = rgbYellow
-Worksheets("Validation").range("CC1").Value = "Height"
-Worksheets("Validation").range("CC1").Interior.Color = rgbYellow
+Worksheets("Validation").Range("BZ1").Value = "HFA" '+ vbNewLine + "Values for glass parts"
+Worksheets("Validation").Range("BZ1").Interior.Color = rgbYellow
+Worksheets("Validation").Range("CA1").Value = "Part Number"
+Worksheets("Validation").Range("CA1").Interior.Color = rgbYellow
+Worksheets("Validation").Range("CB1").Value = "Width"
+Worksheets("Validation").Range("CB1").Interior.Color = rgbYellow
+Worksheets("Validation").Range("CC1").Value = "Height"
+Worksheets("Validation").Range("CC1").Interior.Color = rgbYellow
 
 
 'compare oracle values with hfa values to determine whether the dimensions match or not
@@ -1544,13 +1559,35 @@ Dim isIguHeight As Boolean
 isIguHeight = False
 Dim correctCount As Long
 correctCount = 0
-Dim incorrectCount As Long
+Dim correctHCount As Long
 correctHCount = 0
 
 Dim correctWidthArr() As Double
 ReDim Preserve correctWidthArr(correctCount)
 Dim correctHeightArr() As Double
 ReDim Preserve correctHeightArr(correctCount)
+
+'test reconfig floating point problem when comparing values
+Dim test As Double
+test = 55.375
+Debug.Print test
+Dim test1 As Double
+test1 = 55.4375
+Debug.Print test1
+Dim result As Double
+result = Math.Abs(test - test1)
+Debug.Print result
+
+MsgBox DoubleCheckIfTheSame(55.375, 55.4375)
+MsgBox DoubleCheckIfTheSame(55.375, 55.375)
+
+Dim dict As New Scripting.dictionary
+If Not dict.Exists(key) Then
+    dict.Add "Florescu", "Dan"
+End If
+Debug.Print dict.Exists("Dan")
+Set dict = Nothing
+
 
 'igu width to compare with hfa width
 For iterex = LBound(strWidth) To UBound(strWidth)
@@ -1565,6 +1602,9 @@ For iterex = LBound(strWidth) To UBound(strWidth)
         If Math.Abs(iguWidth - arrWidth(iterin)) <= 0.0625 Then
             isIguWidth = True
             Debug.Print "approx match within 1/16: " & isIguWidth
+            Dim tol As Double
+            tol = Math.Abs(iguWidth - arrWidth(iterin))
+            Debug.Print "--------------------Tolarence: " & tol & " width: " & iguWidth & " arrWidth: " & arrWidth(iterin)
             ReDim Preserve correctWidthArr(0 To correctCount)
             correctWidthArr(correctCount) = iguWidth
             correctCount = correctCount + 1
@@ -1582,6 +1622,8 @@ For iterex = LBound(strWidth) To UBound(strWidth)
     Next iterin
 Next iterex
 
+'not getting put in the correct array???
+'Call CompareUnitDimensionsOracleHfa(strHeight, arrHeight, correctHeightArr, iguHeight, correctHCount)
 'igu height to compare with hfa height
 For iterex = LBound(strHeight) To UBound(strHeight)
     iguHeight = strHeight(iterex)
@@ -1595,7 +1637,7 @@ For iterex = LBound(strHeight) To UBound(strHeight)
             correctHCount = correctHCount + 1
             Exit For
         Else
-            isIguHeight = False
+           isIguHeight = False
             Debug.Print "not a match: " & isIguHeight
         End If
     Next iterin
@@ -1611,15 +1653,15 @@ Next
 
 'go through oracle igu values and whichever values are correct, color green otherwise color red for incorrect
 'check igu widths
-Dim rangeWidth As range
-Set rangeWidth = Sheets("Validation").range("BV:BV")
+Dim rangeWidth As Range
+Set rangeWidth = Sheets("Validation").Range("BV:BV")
 Dim likeStr1 As String
 likeStr1 = "IGU Width*"
 Call CompareValuesAndColorCell(rangeWidth, likeStr1, correctWidthArr)
 
 'check igu height
-Dim rangeHeight As range
-Set rangeHeight = Sheets("Validation").range("BW:BW")
+Dim rangeHeight As Range
+Set rangeHeight = Sheets("Validation").Range("BW:BW")
 Dim likeStr2 As String
 likeStr2 = "IGU Height*"
 Call CompareValuesAndColorCell(rangeHeight, likeStr2, correctHeightArr)
@@ -1646,7 +1688,7 @@ End Function
 '=================================================================================================================================================================================================
 'Compare igu width and height and color cells to indicate if correct or incorrect
 '=================================================================================================================================================================================================
-Function CompareValuesAndColorCell(rg As range, likeStr As String, correctArr As Variant)
+Function CompareValuesAndColorCell(rg As Range, likeStr As String, correctArr As Variant)
 For Each w In rg
     If w.Value Like likeStr Then
         Exit For
@@ -1682,6 +1724,648 @@ For c = 2 To col
     End If
 Next c
 End Function
+
+
+Function CompareUnitDimensionsOracleHfa(oracleArr As Variant, hfaArr As Variant, correctArr As Variant, temp As Double, correctCount As Long)
+For iterex = LBound(oracleArr) To UBound(oracleArr)
+    temp = oracleArr(iterex)
+    Debug.Print "temp var: " & temp
+    For iterin = LBound(hfaArr) To UBound(hfaArr)
+        If Math.Abs(temp - hfaArr(iterin)) <= 0.0625 Then
+            ReDim Preserve correctArr(0 To correctCount)
+            correctArr(correctCount) = iguHeight
+            correctCount = correctCount + 1
+            Exit For
+        Else
+            Debug.Print "not a match: " & temp
+        End If
+    Next iterin
+Next iterex
+End Function
+
+'=================================================================================================================================================================================================
+'Function to check if two doubles are the same or not. Used for comparing unit dimensions.
+'=================================================================================================================================================================================================
+Function DoubleCheckIfTheSame(number1 As Double, number2 As Double, Optional Digits As Integer = 12) As Boolean
+
+If (number1 - number2) ^ 2 < (10 ^ -Digits) ^ 2 Then
+    DoubleCheckIfTheSame = True
+Else
+    DoubleCheckIfTheSame = False
+End If
+
+End Function
+
+'=================================================================================================================================================================================================
+' After comparision fo the BOM's, this sub will go through and validate each bom and notify what is wrong, correct, missing, etc...
+'=================================================================================================================================================================================================
+Sub BomValidationProcess()
+
+Dim varSheetHfa As Worksheet
+'Set varSheetHfa = Sheets(1)
+Dim varSheetOracle As Worksheet
+'Set varSheetHfa = Sheets(3)
+Dim stringRangeCheck As String
+Dim irow As Long
+irow = 1
+Dim icol As Long
+icol = 5
+Dim LastCol As Long
+'LastCol = (Cells(Rows.Count, i).End(xlUp).Row) + 1
+LastCol = (Worksheets(1).Range("A500").End(xlUp).row) + 1
+
+stringRangeCheck = "A2:Q3000"
+'varSheetHfa = Worksheets(1).Range(stringRtangeCheck)
+'varSheetOracle = Worksheets(3).Range(stringRtangeCheck)
+    
+'trying this atm
+Dim compareRange As Range, toCompare As Range
+Dim lastRow1 As Long, lastRow2 As Long
+Dim ws1 As Worksheet, ws2 As Worksheet
+Dim i As Long, j As Long
+
+Set ws1 = Sheets(1)
+Set ws2 = Sheets(3)
+lastRow1 = ws1.Cells(ws1.Rows.count, "A").End(xlUp).row
+lastRow2 = ws2.Cells(ws2.Rows.count, "A").End(xlUp).row
+
+Set compareRange = ws1.Range("A1:A" & lastRow1)
+Set toCompare = ws2.Range("A1:A" & lastRow2)
+
+For i = 1 To lastRow2
+    For j = 1 To lastRow1
+    'Debug.Print ws2.Cells(i, 1)
+    'Debug.Print ws1.Cells(j, 1)
+    'Debug.Print ws2.Cells(i, 3)
+    'Debug.Print ws1.Cells(j, 3)
+    If ws2.Cells(i, 3).InteriorColor = rgbSalmon Or ws2.Cells(i, 4).InteriorColor = rgbSalmon Then
+        
+        'If ws2.Cells(i, 1) = ws1.Cells(j, 1) And ws2.Cells(i, 3) = ws1.Cells(j, 3) And ws2.Cells(i, 4) = ws1.Cells(j, 4) Then
+         '   ws2.Cells(i, 1).Interior.Color = vbGreen
+          '  Exit For
+        'End If
+    Next j
+Next i
+
+End Sub
+
+'--------------------------------------------------
+'Save bom after after getting hfa and oracle bom's
+'--------------------------------------------------
+Sub SaveBom()
+Dim wb As Workbook
+Set wb = ActiveWorkbook
+
+Dim path As String
+Dim fileName As String
+Dim lineNum As String
+lineNum = GetHfaLineNumber
+Debug.Print "line number: " & lineNum
+Dim dimensionAndModel As String
+dimensionAndModel = GetOracleModelAndDimension
+Debug.Print "dimension and model: " & dimensionAndModel
+
+path = "C:\Danny\"
+fileName = "Line " & lineNum & " " & dimensionAndModel
+Application.DisplayAlerts = False
+wb.SaveAs fileName:=path & fileName & ".xlsm", FileFormat:=52
+Application.DisplayAlerts = True
+
+End Sub
+
+'------------------------------------------
+'Save bom after running C3PO light force
+'------------------------------------------
+Sub SaveBomAfterC3POLightForce()
+Dim wb As Workbook
+Set wb = ActiveWorkbook
+Dim numOfSheets As Long
+numOfSheets = wb.Worksheets.count
+Debug.Print numOfSheets
+
+Dim path As String
+Dim fileName As String
+Dim lf As String
+Dim initial As String
+Dim wbName As String
+
+If numOfSheets = 3 Then
+'get the current workbook saved name
+wbName = ActiveWorkbook.Name
+lf = "LF - "
+initial = " - DF"
+fileName = lf & wbName & initial
+path = "C:\Danny\"
+
+wb.SaveAs fileName:=path & fileName & ".xlsm", FileFormat:=52
+
+Else
+wbName = ActiveWorkbook.Name
+lf = "LF error - "
+initial = " - DF"
+fileName = lf & wbName & initial
+path = "C:\Danny\"
+
+wb.SaveAs fileName:=path & fileName & ".xlsm", FileFormat:=52
+End If
+
+End Sub
+
+
+'------------------------------------
+'Get line number from HFA bom
+'------------------------------------
+Function GetHfaLineNumber() As String
+Dim lineNumber As Integer
+Dim str As String
+If Worksheets(1).Range("D1").Value = "Line Number" Then
+    If Not IsEmpty(Worksheets(1).Range("D2").Value) Then
+        lineNumber = Worksheets(1).Range("D2").Value
+        GetHfaLineNumber = CStr(lineNumber)
+        Debug.Print lineNumber
+        Debug.Print GetHfaLineNumber
+    End If
+End If
+
+End Function
+
+'------------------------------------
+'Get Oracle model and dimension
+'------------------------------------
+Function GetOracleModelAndDimension() As String
+Dim strArr() As String
+Dim model As String
+Dim dimension As String
+'Dim finalString As String
+
+Dim ws As Worksheet
+Set ws = Sheets(2)
+Dim lngLastRow As Long
+Dim lngLastColumn As Long
+Dim c As Long
+Dim r As Long
+
+lngLastRow = ws.Cells(Rows.count, "A").End(xlUp).row
+lngLastColumn = ws.Cells(1, Columns.count).End(xlToLeft).Column
+Debug.Print "rows: " & lngLastRow
+Debug.Print Worksheets(2).Range("B2").Value
+If Worksheets(2).Range("B2").Value Like "NFRC#" Then
+    If IsEmpty(Worksheets(2).Range("C2").Value) = False Then
+        strArr = Split(Worksheets(2).Range("C2").Value, ",")
+        model = strArr(2)
+        Debug.Print model
+        dimension = strArr(5)
+        Debug.Print dimension
+    End If
+Else
+For c = 2 To lngLastColumn
+    If ws.Cells(1, c).Value = "Item" Then
+    Debug.Print "---" & ws.Cells(1, c).Value
+        For r = 2 To lngLastRow
+        'Debug.Print ws.Cells(r, 3).Value
+            If ws.Cells(r, 3).Value Like "Frame,*" Then
+                strArr = Split(ws.Cells(r, 3).Value, ",")
+                model = strArr(1)
+                Debug.Print model
+                dimension = strArr(2)
+                Debug.Print dimension
+                Exit For
+            End If
+        Next r
+    End If
+Next c
+End If
+
+GetOracleModelAndDimension = dimension & " " & model
+Debug.Print "end of sub: " & GetOracleModelAndDimension
+
+End Function
+
+'------------------------------------
+'Get Oracle model and dimension
+'------------------------------------
+Sub ReportRegAndEssBomErrors()
+Dim wb As Workbook
+Set wb = ActiveWorkbook
+Dim numOfSheets As Long
+numOfSheets = wb.Worksheets.count
+If numOfSheets = 3 Then
+    Call ReportBomErrors
+Else
+    Call ReportESSBomErrors
+End If
+End Sub
+
+
+
+'------------------------------------
+'Get Oracle model and dimension
+'------------------------------------
+Sub ReportBomErrors()
+Application.ScreenUpdating = False
+Dim missingStr As String
+Dim count As Integer
+count = 0
+Dim description As String
+Dim partNum As String
+Dim strArr() As String
+Dim finalName As String
+'create dicitonary to store RED part numbers - ignore dupilcate parts
+Dim dict As New Scripting.dictionary
+'store non red part numbers - not to confuse with other ones since we have duplicate part numbers
+Dim dict2 As New Scripting.dictionary
+
+Dim ws As Worksheet
+Set ws = Sheets(1)
+Dim lngLastRow As Long
+Dim lngLastColumn As Long
+Dim c As Long
+Dim r As Long
+
+lngLastRow = ws.Cells(Rows.count, "A").End(xlUp).row
+lngLastColumn = ws.Cells(1, Columns.count).End(xlToLeft).Column
+Debug.Print "rows: " & lngLastRow
+
+Dim ws2 As Worksheet
+Set ws2 = Sheets(3)
+Dim lngLastRow2 As Long
+Dim lngLastColumn2 As Long
+Dim i As Long
+Dim j As Long
+
+lngLastRow2 = ws2.Cells(Rows.count, "A").End(xlUp).row
+lngLastColumn2 = ws2.Cells(1, Columns.count).End(xlToLeft).Column
+Debug.Print "rows: " & lngLastRow2
+
+For i = 2 To lngLastColumn2
+    If ws2.Cells(1, i).Value = "Item" Then
+        Debug.Print "---" & ws2.Cells(1, i).Value
+        For j = 2 To lngLastRow2
+            If ws2.Cells(2, 4).Value Like "1.1:*" Then
+                If ws2.Cells(j, 4).Value Like "Frame,*" Then
+                    Dim length As Long
+                    length = Len(ws2.Cells(j, 4).Value)
+                    Dim temp As String
+                    temp = ws2.Cells(j, 4).Value
+                    fileName = Mid(temp, 7, length - 7)
+                    Debug.Print fileName
+                    Exit For
+                End If
+            Else
+                fileName = ws2.Cells(2, 4).Value
+                Debug.Print fileName
+                Exit For
+            End If
+        Next j
+    End If
+Next i
+
+Worksheets("Validation").Range("BT3").Value = "BOM Validation Notes"
+'Worksheets("Validation").Range("D2").Copy Worksheets("Validation").Range("BS6")
+Worksheets("Validation").Range("BS6").Value = fileName
+
+For c = 2 To lngLastColumn
+    If ws.Cells(1, c).Value = "Part Number" Then
+        Debug.Print "---" & ws.Cells(1, c).Value
+        For r = 2 To lngLastRow
+            partNumber = ws.Cells(r, 5).Value
+
+            If ws.Cells(r, 5).Interior.Color = rgbSalmon And Not dict.Exists(partNumber) Then
+                'add part number to dictionary
+                dict.Add partNumber, 1
+                description = ws.Cells(r, 17).Value
+                
+                'check part numbers incase of repeats in descriptions or needing custom error msg
+                If partNumber = "A 1 OF 1" Or partNumber = "B 1 OF 1" Or partNumber = "DLO DIM 1" Or partNumber = "DLO DIM 2" Or partNumber = "SASH HEIGHT" Or partNumber = "SASH WIDTH" Then
+                    missingStr = "Missing  " & description
+                ElseIf partNumber Like "SE*" Then
+                    missingStr = "Missing  Seals  " & partNumber
+                ElseIf partNumber Like "SC*" Then
+                    missingStr = "Mismatch screen dimension  " & partNumber
+                ElseIf partNumber Like "LA*" Then
+                    missingStr = "Missing  Label  " & partNumber
+                ElseIf partNumber Like "MULLPACK*" Then
+                    missingStr = "Missing  " & partNumber
+                ElseIf partNumber = "SPACER" Or partNumber = "SPACERS" Or partNumber = "OA" Or partNumber = "GLSTR" Then
+                    missingStr = "Missing  " & description & "   pn: " & partNumber
+                Else
+                    missingStr = "Missing  " & description & "  " & partNumber
+                End If
+                'build the missing string and output it in the validation sheet
+                count = count + 1
+                'Debug.Print missingStr
+            
+            End If
+            
+            'partNumber Like "EX*" Or partNumber Like "VA*" Or partNumber Like "VX*" And
+            If ws.Cells(r, 5).Interior.Color = rgbAqua And Not dict2.Exists(partNumber) Then
+                If ws.Cells(r, 10).Interior.Color = rgbSalmon Or ws.Cells(r, 11).Interior.Color = rgbSalmon Then
+                    dict2.Add partNumber, 1
+                    count = count + 1
+                    missingStr = "Mismatch dimensions  " & partNumber
+               End If
+            End If
+            'partNumber Like "GA*" Or partNumber Like "GT*" And
+            If ws.Cells(r, 5).Interior.Color = rgbOrange And Not dict2.Exists(partNumber) Then
+               If ws.Cells(r, 10).Interior.Color = rgbSalmon Or ws.Cells(r, 11).Interior.Color = rgbSalmon Then
+                    dict2.Add partNumber, 1
+                    count = count + 1
+                    missingStr = "Mismatch dimensions  " & partNumber
+               End If
+            End If
+            
+                'count = count + 1
+                Debug.Print missingStr
+                Dim rangeStr2 As String
+                Dim start As Integer
+                start = 5
+                start = start + count
+                rangeStr2 = "BT" & CStr(start)
+                Worksheets("Validation").Range(rangeStr2).Value = missingStr
+
+        Next r
+    End If
+Next c
+
+
+'print out dict
+'Dim key As Variant
+'For Each key In dict.Keys
+'    Debug.Print key, dict(key)
+'Next key
+    
+Worksheets(3).Columns("BT").Columns.AutoFit
+
+Set dict = Nothing
+Set dict2 = Nothing
+
+Application.ScreenUpdating = True
+
+End Sub
+
+'----------------------------------------------------------
+'Bom validation notes for ESS boms becuase they are pain
+'----------------------------------------------------------
+Sub ReportESSBomErrors()
+Application.ScreenUpdating = False
+Dim missingStr As String
+Dim count As Integer
+count = 0
+Dim count2 As Integer
+count2 = 0
+Dim description As String
+Dim partNum As String
+Dim strArr() As String
+Dim finalName As String
+'create dicitonary to store RED part numbers - ignore dupilcate parts
+Dim dict As New Scripting.dictionary
+'store non red part numbers - not to confuse with other ones since we have duplicate part numbers
+Dim dict2 As New Scripting.dictionary
+
+'cost sheet
+Dim ws As Worksheet
+Set ws = Sheets(3)
+Dim lngLastRow As Long
+Dim lngLastColumn As Long
+Dim c As Long
+Dim r As Long
+
+lngLastRow = ws.Cells(Rows.count, "A").End(xlUp).row
+lngLastColumn = ws.Cells(1, Columns.count).End(xlToLeft).Column
+Debug.Print "rows: " & lngLastRow
+
+'lineal sheet
+Dim ws4 As Worksheet
+Set ws4 = Sheets(4)
+Dim lngLastRow4 As Long
+Dim lngLastColumn4 As Long
+Dim a As Long
+Dim b As Long
+
+lngLastRow4 = ws4.Cells(Rows.count, "A").End(xlUp).row
+lngLastColumn4 = ws4.Cells(1, Columns.count).End(xlToLeft).Column
+Debug.Print "rows: " & lngLastRow4
+
+Dim ws2 As Worksheet
+Set ws2 = Sheets(2)
+Dim lngLastRow2 As Long
+Dim lngLastColumn2 As Long
+Dim i As Long
+Dim j As Long
+
+lngLastRow2 = ws2.Cells(Rows.count, "A").End(xlUp).row
+lngLastColumn2 = ws2.Cells(1, Columns.count).End(xlToLeft).Column
+Debug.Print "rows: " & lngLastRow2
+
+For i = 2 To lngLastColumn2
+    If ws2.Cells(1, i).Value = "Item" Then
+        Debug.Print "---" & ws2.Cells(1, i).Value
+        For j = 2 To lngLastRow2
+            If ws2.Cells(2, 3).Value Like "1.1:*" Then
+                If ws2.Cells(j, 3).Value Like "Frame,*" Then
+                    Dim length As Long
+                    length = Len(ws2.Cells(j, 3).Value)
+                    Dim temp As String
+                    temp = ws2.Cells(j, 3).Value
+                    fileName = Mid(temp, 7, length - 7)
+                    Debug.Print fileName
+                    Exit For
+                End If
+            Else
+                fileName = ws2.Cells(2, 3).Value
+                Debug.Print fileName
+                Exit For
+            End If
+        Next j
+    End If
+Next i
+
+Worksheets("Lineal").Range("P3").Value = "BOM Validation Notes"
+'Worksheets("Validation").Range("D2").Copy Worksheets("Validation").Range("BS6")
+Worksheets("Lineal").Range("O6").Value = fileName
+
+'going through Cost sheet
+For c = 1 To lngLastColumn
+    If ws.Cells(1, c).Value = "Part Number" Then
+        Debug.Print "---" & ws.Cells(1, c).Value
+        For r = 1 To lngLastRow
+            partNumber = ws.Cells(r, 1).Value
+
+            If ws.Cells(r, 1).Interior.Color = RGB(255, 199, 206) And Not dict.Exists(partNumber) Then
+                'add part number to dictionary
+                dict.Add partNumber, 1
+                description = ws.Cells(r, 2).Value
+                
+                'check part numbers incase of repeats in descriptions or needing custom error msg
+                If partNumber = "A 1 OF 1" Or partNumber = "B 1 OF 1" Or partNumber = "DLO DIM 1" Or partNumber = "DLO DIM 2" Or partNumber = "SASH HEIGHT" Or partNumber = "SASH WIDTH" Then
+                    missingStr = "Missing  " & description
+                ElseIf partNumber Like "SE*" Then
+                    missingStr = "Missing  Seals  " & partNumber
+                ElseIf partNumber Like "SC*" Then
+                    missingStr = "Mismatch screen dimension  " & partNumber
+                ElseIf partNumber Like "LA*" Then
+                    missingStr = "Missing  Label  " & partNumber
+                ElseIf partNumber Like "MULLPACK*" Then
+                    missingStr = "Missing  " & partNumber
+                ElseIf partNumber = "SPACER" Or partNumber = "SPACERS" Or partNumber = "OA" Or partNumber = "GLSTR" Then
+                    missingStr = "Missing  " & description & "   pn: " & partNumber
+                Else
+                    missingStr = "Missing  " & description & "  " & partNumber
+                End If
+                'build the missing string and output it in the validation sheet
+                count = count + 1
+                'Debug.Print missingStr
+            
+            End If
+
+                'count = count + 1
+                Debug.Print missingStr
+                Dim rangeStr2 As String
+                Dim start As Integer
+                start = 5
+                start = start + count
+                rangeStr2 = "P" & CStr(start)
+                Worksheets("Lineal").Range(rangeStr2).Value = missingStr
+
+        Next r
+    End If
+Next c
+
+Debug.Print "COUNT---- " & count
+
+'going through lineal sheet
+For a = 1 To lngLastColumn4
+    If ws4.Cells(1, a).Value = "Part Number" Then
+        Debug.Print "---" & ws4.Cells(1, a).Value
+        For b = 1 To lngLastRow4
+            partNumber = ws4.Cells(b, 1).Value
+
+            If ws4.Cells(b, 1).Interior.Color = RGB(255, 199, 206) And Not dict.Exists(partNumber) Then
+                'add part number to dictionary
+                dict.Add partNumber, 1
+                description = ws4.Cells(b, 2).Value
+                
+                'check part numbers incase of repeats in descriptions or needing custom error msg
+                If partNumber Like "A 1 OF 1" Or partNumber Like "B 1 OF 1" Or partNumber Like "DLO DIM 1" Or partNumber Like "DLO DIM 2" Or partNumber Like "SASH HEIGHT" Like partNumber = "SASH WIDTH" Then
+                    missingStr = "Missing  " & description
+                ElseIf partNumber Like "SE*" Then
+                    missingStr = "Missing  Seals  " & partNumber
+                ElseIf partNumber Like "SC*" Then
+                    missingStr = "Mismatch screen dimension  " & partNumber
+                ElseIf partNumber Like "LANE*" Then
+                    missingStr = "Missing  " & description
+                ElseIf partNumber Like "LA*" Then
+                    missingStr = "Missing  Label  " & partNumber
+                ElseIf partNumber Like "MULLPACK*" Then
+                    missingStr = "Missing  " & partNumber
+                ElseIf partNumber = "SPACER" Or partNumber = "SPACERS" Or partNumber = "OA" Or partNumber = "GLSTR" Then
+                    missingStr = "Missing  " & description & "   pn: " & partNumber
+                Else
+                    missingStr = "Missing  " & description & "  " & partNumber
+                End If
+                'build the missing string and output it in the validation sheet
+                count = count + 1
+                'Debug.Print missingStr
+            
+            End If
+
+                'count = count + 1
+                Debug.Print missingStr
+                Dim rangeStr3 As String
+                Dim start3 As Integer
+                Debug.Print "COUNT LINEAL --- " & count
+                start3 = 5 + count + 1
+                'start3 = start3 + count2
+                Debug.Print "where to start --- " & start3
+                rangeStr3 = "P" & CStr(start3)
+                Debug.Print "lineal range --- " & rangeStr3
+                Worksheets("Lineal").Range(rangeStr3).Value = missingStr
+
+        Next b
+    End If
+Next a
+
+
+'print out dict
+'Dim key As Variant
+'For Each key In dict.Keys
+'    Debug.Print key, dict(key)
+'Next key
+Worksheets(4).Columns("P:T").Columns.AutoFit
+
+Set dict = Nothing
+Set dict2 = Nothing
+
+Application.ScreenUpdating = True
+End Sub
+
+
+'--------------------
+'Calculate pto
+'--------------------
+Sub Oranges()
+Dim d1 As String
+Dim d2 As String
+Dim d3 As String
+
+Dim date1 As Date
+Dim date2 As Date
+Dim date3 As Date
+
+Dim ws As Worksheet
+Set ws = Sheets(1)
+
+d1 = ws.Range("A2").Value
+d2 = ws.Range("B2").Value
+d3 = ws.Range("C2").Value
+
+date1 = CDate(d1)
+date2 = CDate(d2)
+date3 = CDate(d3)
+
+'todayDate = DateValue(ThisWorkbook.Worksheets("Sheet1").Range("A2").Value)
+'todayDate = DateValue(ws.Cells(2, a).Value)
+Debug.Print "Todays date: " & date1
+Debug.Print "Last paycheck date: " & date2
+Debug.Print "Day to use pto: " & date3
+
+Dim years As Integer
+Dim months As Integer
+Dim days As Integer
+
+years = DateDiff("yyyy", date2, date3)
+months = DateDiff("m", date2, date3)
+days = DateDiff("d", date2, date3)
+
+Debug.Print "years: " & years
+Debug.Print "months: " & months
+Debug.Print "days: " & days
+
+If months < 0 Or days < 0 Then
+    MsgBox ("Invalid date selection")
+    Exit Sub
+End If
+
+Dim numOfPaycheck As Double
+Dim payableWorkHours As Double
+Dim workHours As Integer
+Dim res As Variant
+
+payableWorkHours = 6.1
+workHours = 8
+
+'divide by 14 since biweekly
+numOfPaycheck = Round(days / 14)
+Debug.Print "numofpaycheck: " & numOfPaycheck
+
+res = (numOfPaycheck * payableWorkHours) / workHours
+Debug.Print "res: " & res
+Debug.Print "res: " & Int(res)
+
+ws.Range("D2").Value = Int(res)
+
+
+End Sub
 
 
 
